@@ -1,13 +1,27 @@
 import { AutoComplete, Input } from 'antd';
 import React, { useState } from 'react';
+import comic from "../types/comicType"
 
-const ExploreSearchBar: React.FC = () => {
+interface myProps {
+  comics: comic[],
+}
+
+const titlesToOptions = (comics: comic[]) : {value: string}[]  => {
+  const options = comics.map((comic)=>{return ({value: comic.title})})
+  return options
+}
+
+const ExploreSearchBar: React.FC<myProps> = (props: myProps) => {
+  const { comics } = props;
+  const tempOptions = titlesToOptions(comics);
+
+
   const [options, setOptions] = useState<{ value: string }[]>([]);
   const [value, setValue] = useState('');
  
   const onSearch = (searchText: string) => {
     setOptions(
-      !searchText ? [] : [{value: "bruh"}, {value: "bruh moment"}, {value: "BRUH"}],
+      !searchText ? [] : tempOptions
     );
   };
 

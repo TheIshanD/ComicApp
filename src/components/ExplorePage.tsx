@@ -5,14 +5,15 @@ import comic from "../types/comicType";
 
 interface myProps {
   comics: comic[],
-  titles: string[],
 }
 
 const ExplorePage: React.FC<myProps> = (props: myProps) => {
-  const {comics, titles} = props;
+  const {comics} = props;
 
   return (
     <div className="site-layout-content">
+      <Typography>Explore Any and All Comic Book TLDRs</Typography>
+      <ExploreSearchBar comics={comics}></ExploreSearchBar>
       {
         comics.map((comic: any, key: number)=>{
           return(<div key={comic.title}>
@@ -23,8 +24,6 @@ const ExplorePage: React.FC<myProps> = (props: myProps) => {
           </div>)
         })
       }
-      <Typography>Explore Any and All Comic Book TLDRs</Typography>
-      <ExploreSearchBar></ExploreSearchBar>
     </div>
   );
 }

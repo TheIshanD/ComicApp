@@ -12,7 +12,6 @@ const { Header, Content, Footer } = Layout;
 const App: React.FC = () => {
   //Get comics
   const [comics, setComics] = useState<comic[]>([])
-  const [titles, setTitles] = useState<string[]>([])
   const comicsCollectionRef = collection(db, "comics");
 
   const getComics = async () => {
@@ -29,12 +28,8 @@ const App: React.FC = () => {
 
   useEffect(()=>{
     getComics();
-    // console.log("READ Initiated")
   }, []) 
 
-  useEffect(()=>{
-    setTitles(comics.map((comic)=>{return comic.title}))
-  },[comics])
 
   const [currPage, setCurrPage] = useState(1);
 
@@ -69,7 +64,7 @@ const App: React.FC = () => {
       </Header>
       <Content >
         {currPage === 1 &&
-          <ExplorePage comics={comics} titles={titles}></ExplorePage>
+          <ExplorePage comics={comics}></ExplorePage>
         }
         {currPage === 2 &&
           <div className="site-layout-content">Content Page 2</div>
