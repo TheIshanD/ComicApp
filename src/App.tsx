@@ -12,23 +12,29 @@ const { Header, Content, Footer } = Layout;
 const App: React.FC = () => {
   //Get comics
   const [comics, setComics] = useState<comic[]>([])
+  const [titles, setTitles] = useState<string[]>([])
   const comicsCollectionRef = collection(db, "comics");
 
+  const getComics = async () => {
+    const data = await getDocs(comicsCollectionRef);
+    setComics(data.docs.map((doc)=> ({
+      title: doc.data().title, 
+      company: doc.data().company,
+      superheros: doc.data().superheros,
+      tags: doc.data().tags,
+      tldr: doc.data().tldr,
+      id: doc.id,
+    })));
+  }
+
   useEffect(()=>{
-    const getComics = async () => {
-      const data = await getDocs(comicsCollectionRef);
-      setComics(data.docs.map((doc)=> ({
-        title: doc.data().title, 
-        company: doc.data().company,
-        superheros: doc.data().superheros,
-        tags: doc.data().tags,
-        tldr: doc.data().tldr,
-        id: doc.id,
-      })));
-    }
- 
     getComics();
-  }, [comicsCollectionRef]) 
+    // console.log("READ Initiated")
+  }, []) 
+
+  useEffect(()=>{
+    setTitles(comics.map((comic)=>{return comic.title}))
+  },[comics])
 
   const [currPage, setCurrPage] = useState(1);
 
@@ -63,7 +69,7 @@ const App: React.FC = () => {
       </Header>
       <Content >
         {currPage === 1 &&
-          <ExplorePage comics={comics}></ExplorePage>
+          <ExplorePage comics={comics} titles={titles}></ExplorePage>
         }
         {currPage === 2 &&
           <div className="site-layout-content">Content Page 2</div>

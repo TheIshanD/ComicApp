@@ -4,11 +4,12 @@ import ExploreSearchBar from './ExploreSearchBar';
 import comic from "../types/comicType";
 
 interface myProps {
-  comics: comic[];
+  comics: comic[],
+  titles: string[],
 }
 
 const ExplorePage: React.FC<myProps> = (props: myProps) => {
-  const {comics} = props;
+  const {comics, titles} = props;
 
   return (
     <div className="site-layout-content">
