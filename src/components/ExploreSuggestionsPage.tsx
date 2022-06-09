@@ -25,6 +25,8 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
           }
           return false;
       })
+
+
       filteredArr.sort((a, b) : number =>{
           const aTitle = a.title;
           const bTitle = b.title;

@@ -34,9 +34,11 @@ const App: React.FC = () => {
       return {
         title: doc.data().title, 
         company: doc.data().company,
-        superheros: doc.data().superheros,
+        characters: doc.data().characters,
         tags: tempTagArr,
         tldr: doc.data().tldr,
+        tldr2: doc.data().tldr2,
+        keywords: doc.data().keywords,
         id: doc.id,
       }
     }));

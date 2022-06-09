@@ -22,10 +22,8 @@ const CharacterPage: React.FC<myProps> = (props: myProps) => {
   const hasCharacter = comics.filter((comic:Comic) : boolean => {
     var works = false;
     const lowerCharName = character.name.toLowerCase();
-    console.log(comic)
-    console.log(comic.superheros)
-    for (var i = 0; i < comic.superheros.length; i++) {
-      const testCharacter = comic.superheros[i];
+    for (var i = 0; i < comic.characters.length; i++) {
+      const testCharacter = comic.characters[i];
       if(testCharacter.toLowerCase() === lowerCharName) {
         works = true;
         break;
