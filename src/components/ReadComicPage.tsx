@@ -1,5 +1,5 @@
 import { Typography, Divider } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 import ExploreSearchBar from './ExploreSearchBar';
 import Comic from "../types/comicType";
 import { useLocation } from 'react-router-dom';
@@ -12,6 +12,10 @@ const ReadComicPage: React.FC<myProps> = (props: myProps) => {
     const location = useLocation()
     const state = location.state as {comic: Comic}
     const comic = state.comic;
+
+    useEffect(()=>{
+        window.scrollTo(0, 0)
+    },[])
 
     return (
         <div className="site-layout-content">

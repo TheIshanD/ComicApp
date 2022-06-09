@@ -35,7 +35,8 @@ const CompanyCharacterPage: React.FC<myProps> = (props: myProps) => {
               ofCompany.map((character: Character, index: number)=>{
                     return (<Col key={index} span={12}>
                         <Card hoverable={true} onClick={()=>{navigate("character-info", {state: {character: character}})}}>
-                            <Typography>{character.name}</Typography>
+                        <Typography>{character.name}</Typography>
+                        <Typography>{character.smallDesc}</Typography>
                         </Card>
                     </Col>)
                   }

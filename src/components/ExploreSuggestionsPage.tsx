@@ -3,6 +3,7 @@ import React from 'react';
 import ExploreSearchBar from './ExploreSearchBar';
 import Comic from "../types/comicType";
 import { useLocation, useNavigate } from 'react-router-dom';
+import ComicCard from './ComicCard';
 
 interface myProps {
   comics: Comic[],
@@ -14,8 +15,6 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
   const location = useLocation()
   const state = location.state as {value: string}
   const value = state.value;
-
-  const navigate = useNavigate();
 
   const optionSorter = (comics: Comic[]) : Comic[] => {
       // sort by title --> alphabetical
@@ -49,9 +48,7 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
                 {comicSuggestions.length > 0 &&
                     comicSuggestions.map((comic: Comic, index: number)=>{
                         return (<Col key={index} span={24}>
-                            <Card hoverable={true} onClick={()=>{navigate("/read-comic", {state: {comic: comic}})}}>
-                                <Typography>{comic.title}</Typography>
-                            </Card>
+                            <ComicCard comic={comic} />
                         </Col>)
                     })
                 }

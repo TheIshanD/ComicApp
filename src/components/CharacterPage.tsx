@@ -4,6 +4,7 @@ import { Col, Row } from 'antd';
 import Comic from "../types/comicType";
 import { useLocation, useNavigate } from "react-router-dom";
 import Character from '../types/characterType';
+import ComicCard from './ComicCard';
 
 interface myProps {
   comics: Comic[],
@@ -12,8 +13,6 @@ interface myProps {
 
 const CharacterPage: React.FC<myProps> = (props: myProps) => {
   const {comics, company } = props;
-
-  const navigate = useNavigate();
 
   const location = useLocation();
   const state = location.state as { character: Character }
@@ -44,9 +43,7 @@ const CharacterPage: React.FC<myProps> = (props: myProps) => {
           {
               hasCharacter.map((comic: Comic, index: number)=>{
                     return (<Col key={index} span={24}>
-                        <Card hoverable={true} onClick={()=>{navigate("/read-comic", {state: {comic: comic}})}}>
-                            <Typography>{comic.title}</Typography>
-                        </Card>
+                        <ComicCard comic={comic} />
                     </Col>)
                   }
               )

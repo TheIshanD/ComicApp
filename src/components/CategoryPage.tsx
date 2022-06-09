@@ -3,6 +3,7 @@ import React from 'react';
 import { Col, Row } from 'antd';
 import Comic from "../types/comicType";
 import { useNavigate } from "react-router-dom";
+import ComicCard from './ComicCard';
 
 interface myProps {
   comics: Comic[],
@@ -14,13 +15,9 @@ interface myProps {
 const CategoryPage: React.FC<myProps> = (props: myProps) => {
   const {comics, category} = props;
 
-  const navigate = useNavigate();
-
-  console.log(comics)
   const ofCategory = comics.filter((comic:Comic) : boolean => {
       return comic.tags.includes(category)
   })
-  console.log(ofCategory)
 
   return (
     <div className="site-layout-content">
@@ -29,9 +26,7 @@ const CategoryPage: React.FC<myProps> = (props: myProps) => {
           {
               ofCategory.map((comic: Comic, index: number)=>{
                     return (<Col key={index} span={24}>
-                        <Card hoverable={true} onClick={()=>{navigate("/read-comic", {state: {comic: comic}})}}>
-                            <Typography>{comic.title}</Typography>
-                        </Card>
+                        <ComicCard comic={comic} />
                     </Col>)
                   }
               )

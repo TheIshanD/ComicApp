@@ -48,7 +48,6 @@ const App: React.FC = () => {
 
   const getCharacters = async () => {
     const data = await getDocs(characterCollectionRef);
-    console.log(data);
     setCharacters(data.docs.map((doc)=> {
       return {
         company: doc.data().company,
@@ -64,8 +63,6 @@ const App: React.FC = () => {
     getComics();
     getCharacters();
   }, []) 
-
-  useEffect(()=>{console.log(characters)},[characters])
 
   const menuItems = [
     { label: 'Explore', key: 'item-1' },
