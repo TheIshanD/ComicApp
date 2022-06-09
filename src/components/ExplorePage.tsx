@@ -1,10 +1,10 @@
 import { Typography, Divider } from 'antd';
 import React from 'react';
 import ExploreSearchBar from './ExploreSearchBar';
-import comic from "../types/comicType";
+import Comic from "../types/comicType";
 
 interface myProps {
-  comics: comic[],
+  comics: Comic[],
 }
 
 const ExplorePage: React.FC<myProps> = (props: myProps) => {

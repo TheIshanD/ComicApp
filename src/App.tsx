@@ -5,20 +5,22 @@ import ExplorePage from './components/ExplorePage';
 
 import { collection, getDocs } from 'firebase/firestore';
 import {db} from "./firebase-config";
-import comic from "./types/comicType"
+import Comic from "./types/comicType"
 
 import { Routes, Route, useNavigate } from "react-router-dom";
 import CategoriesPage from './components/CategoriesPage';
 import CategoryPage from './components/CategoryPage';
 import ReadComicPage from './components/ReadComicPage';
-import CompanyComicsPage from "./components/CompanyComicsPage"
+import CompanyComicsPage from "./components/CompanyCharactersPage"
 import ExploreSuggestionsPage from './components/ExploreSuggestionsPage';
+import Character from './types/characterType';
+import CharacterPage from './components/CharacterPage';
 
 const { Header, Content, Footer } = Layout;
 
 const App: React.FC = () => {
   //Get comics
-  const [comics, setComics] = useState<comic[]>([])
+  const [comics, setComics] = useState<Comic[]>([])
   const comicsCollectionRef = collection(db, "comics");
 
   const navigate = useNavigate();
@@ -40,9 +42,30 @@ const App: React.FC = () => {
     }));
   }
 
+  const [characters, setCharacters] = useState<Character[]>([])
+  const characterCollectionRef = collection(db, "characters");
+
+
+  const getCharacters = async () => {
+    const data = await getDocs(characterCollectionRef);
+    console.log(data);
+    setCharacters(data.docs.map((doc)=> {
+      return {
+        company: doc.data().company,
+        name: doc.data().name,
+        longDesc: doc.data().longDesc,
+        smallDesc: doc.data().smallDesc,
+        id: doc.id,
+      }
+    }));
+  }
+
   useEffect(()=>{
     getComics();
+    getCharacters();
   }, []) 
+
+  useEffect(()=>{console.log(characters)},[characters])
 
   const menuItems = [
     { label: 'Explore', key: 'item-1' },
@@ -89,8 +112,10 @@ const App: React.FC = () => {
           <Route path="categories/romance" element={<CategoryPage comics={comics} category={"Romance"} />} />
           <Route path="categories/comedy" element={<CategoryPage comics={comics} category={"Comedy"} />} />
           <Route path="read-comic" element={<ReadComicPage comics={comics} />} />
-          <Route path="Marvel" element={<CompanyComicsPage comics={comics} company={"Marvel"}/>} />
-          <Route path="DC" element={<CompanyComicsPage comics={comics} company={"DC"}/>} />
+          <Route path="Marvel" element={<CompanyComicsPage comics={comics} company={"Marvel"} characters={characters}/>} />
+          <Route path="DC" element={<CompanyComicsPage comics={comics} company={"DC"} characters={characters}/>} />
+          <Route path="Marvel/character-info" element={<CharacterPage comics={comics} company={"Marvel"}/>} />
+          <Route path="DC/character-info" element={<CharacterPage comics={comics} company={"DC"}/>} />
         </Routes>
       </Content>
       <Footer style={{ textAlign: 'center' }}>TLDR ©2022 Created by Ishan Dasgupta and Aaditya Ganesan</Footer>

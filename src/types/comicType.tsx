@@ -1,4 +1,4 @@
-interface comic {
+interface Comic {
     title: string,
     company: string,
     superheros: string[],
@@ -8,4 +8,4 @@ interface comic {
   }
 
 
-  export default comic;
+  export default Comic;

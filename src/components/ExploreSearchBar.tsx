@@ -1,14 +1,14 @@
 import { AutoComplete, Input } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import comic from "../types/comicType"
+import Comic from "../types/comicType"
 
 interface myProps {
-  comics: comic[],
+  comics: Comic[],
   defaultVal: string,
 }
 
-const titlesToOptions = (comics: comic[]) : {value: string}[]  => {
+const titlesToOptions = (comics: Comic[]) : {value: string}[]  => {
   const options = comics.map((comic)=>{return ({value: comic.title})})
   return options
 }

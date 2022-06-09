@@ -1,11 +1,11 @@
 import { Card, Typography } from 'antd';
 import React from 'react';
 import { Col, Row } from 'antd';
-import comic from "../types/comicType";
+import Comic from "../types/comicType";
 import { useNavigate } from "react-router-dom";
 
 interface myProps {
-  comics: comic[],
+  comics: Comic[],
 }
 
 const CategoriesPage: React.FC<myProps> = (props: myProps) => {

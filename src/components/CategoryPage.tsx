@@ -1,11 +1,11 @@
 import { Card, List, Typography } from 'antd';
 import React from 'react';
 import { Col, Row } from 'antd';
-import comic from "../types/comicType";
+import Comic from "../types/comicType";
 import { useNavigate } from "react-router-dom";
 
 interface myProps {
-  comics: comic[],
+  comics: Comic[],
   category: string,
 }
 
@@ -17,7 +17,7 @@ const CategoryPage: React.FC<myProps> = (props: myProps) => {
   const navigate = useNavigate();
 
   console.log(comics)
-  const ofCategory = comics.filter((comic:comic) : boolean => {
+  const ofCategory = comics.filter((comic:Comic) : boolean => {
       return comic.tags.includes(category)
   })
   console.log(ofCategory)
@@ -27,7 +27,7 @@ const CategoryPage: React.FC<myProps> = (props: myProps) => {
       <Typography>{category}</Typography>
       <Row gutter={[0, 16]}>
           {
-              ofCategory.map((comic: comic, index: number)=>{
+              ofCategory.map((comic: Comic, index: number)=>{
                     return (<Col key={index} span={24}>
                         <Card hoverable={true} onClick={()=>{navigate("/read-comic", {state: {comic: comic}})}}>
                             <Typography>{comic.title}</Typography>

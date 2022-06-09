@@ -1,11 +1,11 @@
-import { Typography, Divider, Row, Col, Card, Empty } from 'antd';
+import { Typography, Row, Col, Card, Empty } from 'antd';
 import React from 'react';
 import ExploreSearchBar from './ExploreSearchBar';
-import comic from "../types/comicType";
+import Comic from "../types/comicType";
 import { useLocation, useNavigate } from 'react-router-dom';
 
 interface myProps {
-  comics: comic[],
+  comics: Comic[],
 }
 
 const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
@@ -17,7 +17,7 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
 
   const navigate = useNavigate();
 
-  const optionSorter = (comics: comic[]) : comic[] => {
+  const optionSorter = (comics: Comic[]) : Comic[] => {
       // sort by title --> alphabetical
       const lowerVal  = value.toLowerCase();
       const filteredArr = comics.filter((comic)=>{
@@ -31,9 +31,9 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
           const bTitle = b.title;
 
           if(bTitle > aTitle) {
-              return 1;
+              return -1;
           }
-          return 0;
+          return 1;
       })
       return (filteredArr);
   }
@@ -47,7 +47,7 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
         <div className="site-layout-content">
             <Row gutter={[0, 16]}>
                 {comicSuggestions.length > 0 &&
-                    comicSuggestions.map((comic: comic, index: number)=>{
+                    comicSuggestions.map((comic: Comic, index: number)=>{
                         return (<Col key={index} span={24}>
                             <Card hoverable={true} onClick={()=>{navigate("/read-comic", {state: {comic: comic}})}}>
                                 <Typography>{comic.title}</Typography>
@@ -55,7 +55,7 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
                         </Col>)
                     })
                 }
-                {comicSuggestions.length == 0 &&
+                {comicSuggestions.length === 0 &&
                     <Empty 
                         description={
                             <Typography>No such comics found. Try seaching something else!</Typography>
