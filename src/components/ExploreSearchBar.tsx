@@ -57,7 +57,7 @@ const ExploreSearchBar: React.FC<myProps> = (props: myProps) => {
         onBlur={()=>{setFocused(false)}}
         defaultValue={defaultVal}
         dropdownMatchSelectWidth={false}
-        // open={false}
+        open={false}
       >
         <Input.Search size="large" placeholder="Search for your Favorite Comic Book" enterButton onSearch={()=>{search(value)}}/>
       </AutoComplete>
