@@ -7,6 +7,11 @@ import { collection, getDocs } from 'firebase/firestore';
 import {db} from "./firebase-config";
 import comic from "./types/comicType"
 
+import { Routes, Route, useNavigate } from "react-router-dom";
+import CategoriesPage from './components/CategoriesPage';
+import CategoryPage from './components/CategoryPage';
+import ReadComicPage from './components/ReadComicPage';
+
 const { Header, Content, Footer } = Layout;
 
 const App: React.FC = () => {
@@ -14,37 +19,47 @@ const App: React.FC = () => {
   const [comics, setComics] = useState<comic[]>([])
   const comicsCollectionRef = collection(db, "comics");
 
+  const navigate = useNavigate();
+
   const getComics = async () => {
     const data = await getDocs(comicsCollectionRef);
-    setComics(data.docs.map((doc)=> ({
-      title: doc.data().title, 
-      company: doc.data().company,
-      superheros: doc.data().superheros,
-      tags: doc.data().tags,
-      tldr: doc.data().tldr,
-      id: doc.id,
-    })));
+    setComics(data.docs.map((doc)=> {
+      console.log(doc.data())
+      console.log(doc.data().tags)
+      const tempTagArr = doc.data().tags.map((tag: string) : string =>{
+        return (tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase())
+      })
+      return {
+        title: doc.data().title, 
+        company: doc.data().company,
+        superheros: doc.data().superheros,
+        tags: tempTagArr,
+        tldr: doc.data().tldr,
+        id: doc.id,
+      }
+    }));
   }
+
+  useEffect(()=>{
+    console.log(comics);
+  }, [comics]) 
 
   useEffect(()=>{
     getComics();
   }, []) 
 
-
-  const [currPage, setCurrPage] = useState(1);
-
   const menuItems = [
     { label: 'Explore', key: 'item-1' },
-    { label: 'Genres', key: 'item-2' },
+    { label: 'Categories', key: 'item-2' },
   ]
 
   const onMenuItemClicked = (props : {item: any, key: String, keyPath: String[], domEvent: any}) => {
     const {key} = props;
 
     if(key === "item-1") {
-      setCurrPage(1);
+      navigate("/")
     } else {
-      setCurrPage(2);
+      navigate("/categories")
     }
   }
 
@@ -63,12 +78,14 @@ const App: React.FC = () => {
         />
       </Header>
       <Content >
-        {currPage === 1 &&
-          <ExplorePage comics={comics}></ExplorePage>
-        }
-        {currPage === 2 &&
-          <div className="site-layout-content">Content Page 2</div>
-        }
+        <Routes>
+          <Route path="/" element={<ExplorePage comics={comics}/>} />
+          <Route path="categories" element={<CategoriesPage comics={comics} />} />
+          <Route path="categories/action" element={<CategoryPage comics={comics} category={"Action/adventure"} />} />
+          <Route path="categories/romance" element={<CategoryPage comics={comics} category={"Romance"} />} />
+          <Route path="categories/comedy" element={<CategoryPage comics={comics} category={"Comedy"} />} />
+          <Route path="read-comic" element={<ReadComicPage comics={comics} />} />
+        </Routes>
       </Content>
       <Footer style={{ textAlign: 'center' }}>TLDR ©2022 Created by Ishan Dasgupta and Aaditya Ganesan</Footer>
     </Layout>

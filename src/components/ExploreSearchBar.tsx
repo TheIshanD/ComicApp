@@ -1,5 +1,5 @@
 import { AutoComplete, Input } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import comic from "../types/comicType"
 
 interface myProps {
@@ -13,15 +13,18 @@ const titlesToOptions = (comics: comic[]) : {value: string}[]  => {
 
 const ExploreSearchBar: React.FC<myProps> = (props: myProps) => {
   const { comics } = props;
+
   const tempOptions = titlesToOptions(comics);
 
-
   const [options, setOptions] = useState<{ value: string }[]>([]);
-  const [value, setValue] = useState('');
- 
+  const [value, setValue] = useState<string>('');
+  const [focused, setFocused] = useState<boolean>(false);
+
+  // tempOptions.unshift({ value: value.concat(" -search")})
+
   const onSearch = (searchText: string) => {
     setOptions(
-      !searchText ? [] : tempOptions
+      tempOptions
     );
   };
 
@@ -45,6 +48,9 @@ const ExploreSearchBar: React.FC<myProps> = (props: myProps) => {
         onSearch={onSearch}
         filterOption={true}
         onChange={onChange}
+        onFocus={()=>{setFocused(true)}}
+        onBlur={()=>{setFocused(false)}}
+        backfill={true}
       >
         <Input.Search size="large" placeholder="Search for your Favorite Comic Book" enterButton onSearch={()=>{search(value)}}/>
       </AutoComplete>
