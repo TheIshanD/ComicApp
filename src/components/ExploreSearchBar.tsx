@@ -1,9 +1,11 @@
 import { AutoComplete, Input } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import comic from "../types/comicType"
 
 interface myProps {
   comics: comic[],
+  defaultVal: string,
 }
 
 const titlesToOptions = (comics: comic[]) : {value: string}[]  => {
@@ -12,7 +14,7 @@ const titlesToOptions = (comics: comic[]) : {value: string}[]  => {
 }
 
 const ExploreSearchBar: React.FC<myProps> = (props: myProps) => {
-  const { comics } = props;
+  const { comics, defaultVal } = props;
 
   const tempOptions = titlesToOptions(comics);
 
@@ -20,16 +22,18 @@ const ExploreSearchBar: React.FC<myProps> = (props: myProps) => {
   const [value, setValue] = useState<string>('');
   const [focused, setFocused] = useState<boolean>(false);
 
+  const navigate = useNavigate();
+
   // tempOptions.unshift({ value: value.concat(" -search")})
 
   const onSearch = (searchText: string) => {
     setOptions(
-      tempOptions
+      !searchText ? [] : tempOptions,
     );
   };
 
   const onSelect = (value: string) => {
-    console.log('onSelect', value);
+
   };
 
   const onChange = (data: string) => {
@@ -37,6 +41,7 @@ const ExploreSearchBar: React.FC<myProps> = (props: myProps) => {
   };
 
   const search = (value: string) => {
+    navigate("/explore", { state: { value }})
     console.log("SEARCH UP NOW", value) // Replace with a searching action
   }
 
@@ -50,7 +55,9 @@ const ExploreSearchBar: React.FC<myProps> = (props: myProps) => {
         onChange={onChange}
         onFocus={()=>{setFocused(true)}}
         onBlur={()=>{setFocused(false)}}
-        backfill={true}
+        defaultValue={defaultVal}
+        dropdownMatchSelectWidth={false}
+        // open={false}
       >
         <Input.Search size="large" placeholder="Search for your Favorite Comic Book" enterButton onSearch={()=>{search(value)}}/>
       </AutoComplete>

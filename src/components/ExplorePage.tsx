@@ -13,17 +13,7 @@ const ExplorePage: React.FC<myProps> = (props: myProps) => {
   return (
     <div className="site-layout-content">
       <Typography>Explore Any and All Comic Book TLDRs</Typography>
-      <ExploreSearchBar comics={comics}></ExploreSearchBar>
-      {
-        comics.map((comic: any, key: number)=>{
-          return(<div key={comic.title}>
-            <Typography>Title: {comic.title}</Typography>
-            <Typography>Company: {comic.company}</Typography>
-            <Typography>TLDR: {comic.tldr}</Typography>
-            <Divider />
-          </div>)
-        })
-      }
+      <ExploreSearchBar comics={comics} defaultVal={""}></ExploreSearchBar>
     </div>
   );
 }

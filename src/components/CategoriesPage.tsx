@@ -13,7 +13,7 @@ const CategoriesPage: React.FC<myProps> = (props: myProps) => {
   const navigate = useNavigate();
   return (
     <div className="site-layout-content">
-      <Typography>Explore Any and All Comic Book TLDRs</Typography>
+      <Typography>Find Your Favorite Categories!</Typography>
       <Row justify="space-between" gutter={[8, 16]}>
         <Col span={12}>
           <Card title="Action/Adventure" hoverable={true} onClick={()=>{navigate("action")}}>
