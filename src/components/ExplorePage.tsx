@@ -9,10 +9,15 @@ interface myProps {
 
 const ExplorePage: React.FC<myProps> = (props: myProps) => {
   const {comics} = props;
+  const { Title } = Typography;
 
   return (
     <div className="site-layout-content">
-      <Typography>Explore Any and All Comic Book TLDRs</Typography>
+      <Title level={1}>Explore All Comic Book TLDRs:</Title>
+
+      {/* idk im questioning this divider too */}
+      <Divider /> 
+      
       <ExploreSearchBar comics={comics} defaultVal={""} placeholder={"Search for your Favorite Comic Book"}></ExploreSearchBar>
     </div>
   );

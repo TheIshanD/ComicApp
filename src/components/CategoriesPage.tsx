@@ -1,4 +1,4 @@
-import { Card, Typography } from 'antd';
+import { Card, Divider, Typography } from 'antd';
 import React from 'react';
 import { Col, Row } from 'antd';
 import Comic from "../types/comicType";
@@ -9,27 +9,35 @@ interface myProps {
 }
 
 const CategoriesPage: React.FC<myProps> = (props: myProps) => {
-  const {comics} = props;
+  const { Title, Text } = Typography;
+
   const navigate = useNavigate();
   return (
     <div className="site-layout-content">
-      <Typography>Find Your Favorite Categories!</Typography>
+      <Title level={1}>Find Your Favorite Categories!</Title>
+      <Divider />
       <Row justify="space-between" gutter={[8, 16]}>
         <Col span={12}>
-          <Card title="Action/Adventure" hoverable={true} onClick={()=>{navigate("action")}}>
-            <p>Juicy Stuff</p>
+          <Card hoverable={true} onClick={()=>{navigate("action")}}>
+            <Title level={4}>Action</Title>
+            <Divider />
+            <Text>Juicy Stuff</Text>
           </Card>
         </Col>
 
         <Col span={12}>
-          <Card title="Romance" hoverable={true} onClick={()=>{navigate("romance")}}>
-            <p>Juicy Stuff</p>
+          <Card hoverable={true} onClick={()=>{navigate("romance")}}>
+            <Title level={4}>Romance</Title>
+            <Divider />
+            <Text>Juicy Stuff</Text>
           </Card>
         </Col>
 
         <Col span={12}>
-          <Card title="Comedy" hoverable={true} onClick={()=>{navigate("comedy")}}>
-            <p>Juicy Stuff</p>
+          <Card hoverable={true} onClick={()=>{navigate("comedy")}}>
+            <Title level={4}>Comedy</Title>
+            <Divider />
+            <Text>Juicy Stuff</Text>
           </Card>
         </Col>
       </Row>

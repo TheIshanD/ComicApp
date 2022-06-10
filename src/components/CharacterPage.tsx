@@ -14,6 +14,8 @@ interface myProps {
 const CharacterPage: React.FC<myProps> = (props: myProps) => {
   const {comics, company } = props;
 
+  const { Title } = Typography;
+
   const location = useLocation();
   const state = location.state as { character: Character }
   const character = state.character;
@@ -34,9 +36,9 @@ const CharacterPage: React.FC<myProps> = (props: myProps) => {
 
   return (
     <div className="site-layout-content">
-      <Typography>{character.name}</Typography>
-      <Typography>Made by: {company}</Typography>
-      <Typography>{character.longDesc}</Typography>
+      <Title level={1}>{character.name}</Title>
+      <Title level={3}>Created by: {company}</Title>
+      <Title level={4}>{character.longDesc}</Title>
 
       <Divider />
 

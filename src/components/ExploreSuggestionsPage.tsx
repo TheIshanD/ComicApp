@@ -12,6 +12,8 @@ interface myProps {
 const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
   const {comics} = props;
 
+  const { Title } = Typography;
+
   const location = useLocation()
   const state = location.state as {value: string}
   const value = state.value;
@@ -52,7 +54,11 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
 
   return (
     <div className="site-layout-content">
-        <Typography>Explore Any and All Comic Book TLDRs</Typography>
+        <Title level={1}>Explore All Comic Book TLDRs:</Title>
+
+        {/* idk im questioning this divider too */}
+        <Divider /> 
+        
         <ExploreSearchBar comics={comics} defaultVal={value} placeholder={"Search for your Favorite Comic Book"}></ExploreSearchBar>
 
         <Divider />
@@ -72,7 +78,7 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
             {comicSuggestions.length === 0 &&
                 <Empty 
                     description={
-                        <Typography>No comics found. Try seaching something else!</Typography>
+                        <Title level={1}>No comics found. Try seaching something else!</Title>
                     }
                 />
             }
