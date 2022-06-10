@@ -1,20 +1,20 @@
 import { Image, Layout, Menu } from 'antd';
 import React, { useState, useEffect } from 'react';
 import './App.less';
-import ExplorePage from './components/ExplorePage';
+import ExplorePage from './pages/ExplorePage';
 
 import { collection, getDocs } from 'firebase/firestore';
 import {db} from "./firebase-config";
 import Comic from "./types/comicType"
 
 import { Routes, Route, useNavigate, Navigate, Link } from "react-router-dom";
-import CategoriesPage from './components/CategoriesPage';
-import CategoryPage from './components/CategoryPage';
-import ReadComicPage from './components/ReadComicPage';
-import CompanyComicsPage from "./components/CompanyCharactersPage"
-import ExploreSuggestionsPage from './components/ExploreSuggestionsPage';
+import CategoriesPage from './pages/CategoriesPage';
+import CategoryPage from './pages/CategoryPage';
+import ReadComicPage from './pages/ReadComicPage';
+import CompanyComicsPage from "./pages/CompanyCharactersPage"
+import ExploreSuggestionsPage from './pages/ExploreSuggestionsPage';
 import Character from './types/characterType';
-import CharacterPage from './components/CharacterPage';
+import CharacterPage from './pages/CharacterPage';
 
 const { Header, Content, Footer } = Layout;
 

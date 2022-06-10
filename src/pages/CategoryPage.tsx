@@ -3,10 +3,10 @@ import React from 'react';
 import { Col, Row } from 'antd';
 import Comic from "../types/comicType";
 import { useNavigate } from "react-router-dom";
-import ComicCard from './ComicCard';
+import ComicCard from '../components/ComicCard';
 
 import QueueAnim from 'rc-queue-anim';
-import CustomPageHeader from './CustomPageHeader';
+import CustomPageHeader from '../components/CustomPageHeader';
 
 interface myProps {
   comics: Comic[],
@@ -27,20 +27,22 @@ const CategoryPage: React.FC<myProps> = (props: myProps) => {
   return (
     <div>
       <CustomPageHeader titleString={category} />
-    <div className="site-layout-content">
-      <List grid={{ gutter: 16, column: 4 }}>
-        <QueueAnim>
-          {
-              ofCategory.map((comic: Comic, index: number)=>{
-                    return (<List.Item key={index}>
-                        <ComicCard comic={comic} />
-                    </List.Item>)
-                  }
-              )
-            }
-          </QueueAnim>
-      </List>
-    </div>
+      <div className='site-wrapper'>
+        <div className="site-layout-content">
+          <List grid={{ gutter: 16, column: 4 }}>
+            <QueueAnim>
+              {
+                  ofCategory.map((comic: Comic, index: number)=>{
+                        return (<List.Item key={index}>
+                            <ComicCard comic={comic} />
+                        </List.Item>)
+                      }
+                  )
+                }
+              </QueueAnim>
+          </List>
+        </div>
+      </div>
     </div>
   );
 }

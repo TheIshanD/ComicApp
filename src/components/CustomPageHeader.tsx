@@ -17,9 +17,9 @@ const CustomPageHeader: React.FC<myProps> = (props: myProps) => {
       <PageHeader
         style={{
           backgroundColor:  "#111",
-          color: 'white'
+          color: 'white',
         }}
-        title={<Title style={{marginTop: "auto", marginBottom: "auto", color: 'white'}} level={1}>{titleString}</Title>}
+        title={<Title style={{marginTop: "auto", marginBottom: "auto", color: 'white', fontFamily: "Comic Sans MS",}} level={1}>{titleString}</Title>}
       />
       </Affix>
     );

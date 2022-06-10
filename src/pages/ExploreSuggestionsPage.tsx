@@ -1,12 +1,12 @@
 import { Typography, Row, Col, Card, Empty, Divider, List } from 'antd';
 import React from 'react';
-import ExploreSearchBar from './ExploreSearchBar';
+import ExploreSearchBar from '../components/ExploreSearchBar';
 import Comic from "../types/comicType";
 import { useLocation, useNavigate } from 'react-router-dom';
-import ComicCard from './ComicCard';
+import ComicCard from '../components/ComicCard';
 
 import QueueAnim from 'rc-queue-anim';
-import CustomPageHeader from './CustomPageHeader';
+import CustomPageHeader from '../components/CustomPageHeader';
 
 interface myProps {
   comics: Comic[],
@@ -64,34 +64,36 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
     return (
         <div>
             <CustomPageHeader titleString={"Explore All Comic Book TLDRs!"}/>
-            <div className="site-layout-content">
-                
-                <ExploreSearchBar comics={comics} defaultVal={value} placeholder={"Search for your Favorite Comic Book"}></ExploreSearchBar>
+            <div className='site-wrapper'>
+                <div className="site-layout-content">
+                    
+                    <ExploreSearchBar comics={comics} defaultVal={value} placeholder={"Search for your Favorite Comic Book"}></ExploreSearchBar>
 
-                <Divider />
+                    <Divider />
 
-                <List grid={{ gutter: 200, column: 4 }} style={{
-                //   overflow: "auto",
-                //   height: "80vh",
-                //   paddingRight: "25px"
-                }}>
-                    {comicSuggestions.length === 0 &&
-                        <Empty 
-                            description={
-                                <Title level={1}>No comics found. Try seaching something else!</Title>
-                            }
-                        />
-                    }
-                    <QueueAnim >
-                    {comicSuggestions.length > 0 ?
-                        comicSuggestions.map((comic: Comic, index: number)=>{
-                            return (<List.Item key={index}>
-                                <ComicCard comic={comic} />
-                            </List.Item>)
-                        }) : null
-                    }
-                    </ QueueAnim>
-                </List>
+                    <List grid={{ gutter: 200, column: 4 }} style={{
+                    //   overflow: "auto",
+                    //   height: "80vh",
+                    //   paddingRight: "25px"
+                    }}>
+                        {comicSuggestions.length === 0 &&
+                            <Empty 
+                                description={
+                                    <Title level={1}>No comics found. Try seaching something else!</Title>
+                                }
+                            />
+                        }
+                        <QueueAnim >
+                        {comicSuggestions.length > 0 ?
+                            comicSuggestions.map((comic: Comic, index: number)=>{
+                                return (<List.Item key={index}>
+                                    <ComicCard comic={comic} />
+                                </List.Item>)
+                            }) : null
+                        }
+                        </ QueueAnim>
+                    </List>
+                </div>
             </div>
         </div>
     );

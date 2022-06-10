@@ -45,20 +45,43 @@ const ExploreSearchBar: React.FC<myProps> = (props: myProps) => {
     navigate("/explore", { state: { value }})
   }
 
+  const onFocus = () => {
+    var element = document.getElementById("comicSearcher")
+    if(element != null) {
+      element.classList.toggle("searchBar")
+      element.classList.toggle("searchBarFocused")
+    }
+  }
+
+  const onBlur = () => {
+    const element = document.getElementById("comicSearcher")
+    if(element != null) {
+      element.classList.toggle("searchBar")
+      element.classList.toggle("searchBarFocused")
+    }
+  }
+
   return (
+    <div
+    id='comicSearcher'
+        className="searchBar"
+        >
       <AutoComplete 
         options={options}
-        style={{ width: 800 }}
+        style={{ width: "100%" }}
         onSelect={onSelect}
         onSearch={onSearch}
         filterOption={true}
         onChange={onChange}
         defaultValue={defaultVal}
+        onFocus={()=>{onFocus()}}
+        onBlur={()=>{onBlur()}}
         dropdownMatchSelectWidth={false}
         open={false}
       >
         <Input.Search size="large" placeholder={placeholder} enterButton onSearch={()=>{search(value)}}/>
       </AutoComplete>
+      </div>
   );
 }
 

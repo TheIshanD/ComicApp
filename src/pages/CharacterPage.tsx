@@ -4,10 +4,10 @@ import { Col, Row } from 'antd';
 import Comic from "../types/comicType";
 import { useLocation, useNavigate } from "react-router-dom";
 import Character from '../types/characterType';
-import ComicCard from './ComicCard';
+import ComicCard from '../components/ComicCard';
 
 import QueueAnim from 'rc-queue-anim';
-import CustomPageHeader from './CustomPageHeader';
+import CustomPageHeader from '../components/CustomPageHeader';
 
 interface myProps {
   comics: Comic[],
@@ -46,31 +46,33 @@ const CharacterPage: React.FC<myProps> = (props: myProps) => {
     return (
       <div>
         <CustomPageHeader titleString={character.name} />
-        <div className="site-layout-content">
-          {/* <Title level={3}>Created by: {company}</Title> */}
-          <Title level={4}>{character.longDesc}</Title>
+        <div className='site-wrapper'>
+          <div className="site-layout-content">
+            {/* <Title level={3}>Created by: {company}</Title> */}
+            <Title level={4}>{character.longDesc}</Title>
 
-          <Divider />
+            <Divider />
 
-          <List 
-            grid={{ gutter: 0, column: 16 }}
-            style={{
-                overflow: "auto",
-                height: "80vh",
-                paddingRight: "25px"
-            }}
-          >
-              <QueueAnim>
-                {
-                    hasCharacter.map((comic: Comic, index: number)=>{
-                          return (<List.Item key={index}>
-                              <ComicCard comic={comic} />
-                          </List.Item>)
-                        }
-                    )
-                  }
-                </QueueAnim>
-          </List>
+            <List 
+              grid={{ gutter: 0, column: 16 }}
+              style={{
+                  overflow: "auto",
+                  height: "80vh",
+                  paddingRight: "25px"
+              }}
+            >
+                <QueueAnim>
+                  {
+                      hasCharacter.map((comic: Comic, index: number)=>{
+                            return (<List.Item key={index}>
+                                <ComicCard comic={comic} />
+                            </List.Item>)
+                          }
+                      )
+                    }
+                  </QueueAnim>
+            </List>
+          </div>
         </div>
       </div>
     ); 
