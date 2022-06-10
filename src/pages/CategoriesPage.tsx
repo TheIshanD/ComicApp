@@ -19,41 +19,45 @@ const CategoriesPage: React.FC<myProps> = (props: myProps) => {
     <div>
       <CustomPageHeader titleString={"Find Your Favorite Categories!"}/>
       <div className='site-wrapper'>
-        <div className="site-layout-content">
+        <div className="site-layout-content transition">
           <Row justify="space-between" gutter={[16, 16]}>
 
             {/* KEEP IN ALPHABETICAL ORDER PLEASE */}
-
-              <Col span={12} key={"1"}>
-                <Card className="card" hoverable={true} onClick={()=>{navigate("action")}}>
+            <Col span={12} key={"1"}>
+              <QueueAnim type={"bottom"} duration={1500}>
+                <Card className="card" hoverable={true} onClick={()=>{navigate("action")}} key={"1"}>
                   <Title level={3}>Action</Title>
                   <Divider orientation="left" plain={true} orientationMargin={0}>
                     <Text type="secondary">Catagory TLDR</Text>
                   </Divider>
                   <Text>Juicy Stuff</Text>
                 </Card>
-              </Col>
+              </QueueAnim>
+            </Col>
+              
+            <Col span={12} key={"3"}>
+              <QueueAnim type={"bottom"} duration={1500}>
+              <Card className="card" hoverable={true} onClick={()=>{navigate("comedy")}} key={"1"}>
+                <Title level={3}>Comedy</Title>
+                <Divider orientation="left" plain={true} orientationMargin={0}>
+                  <Text type="secondary">Catagory TLDR</Text>
+                </Divider>
+                <Text>Juicy Stuff</Text>
+              </Card>
+              </QueueAnim>
+            </Col>
 
-              <Col span={12} key={"3"}>
-                <Card className="card" hoverable={true} onClick={()=>{navigate("comedy")}}>
-                  <Title level={3}>Comedy</Title>
-                  <Divider orientation="left" plain={true} orientationMargin={0}>
-                    <Text type="secondary">Catagory TLDR</Text>
-                  </Divider>
-                  <Text>Juicy Stuff</Text>
-                </Card>
-              </Col>
-
-              <Col span={12} key={"2"}>
-                <Card className="card" hoverable={true} onClick={()=>{navigate("romance")}}>
+            <Col span={12} key={"2"}>
+              <QueueAnim type={"bottom"} duration={1500}>
+                <Card className="card" hoverable={true} onClick={()=>{navigate("romance")}} key={"1"}>
                   <Title level={3}>Romance</Title>
                   <Divider orientation="left" plain={true} orientationMargin={0}>
                     <Text type="secondary">Catagory TLDR</Text>
                   </Divider>
                   <Text>Juicy Stuff</Text>
                 </Card>
-              </Col>
-            {/* </QueueAnim> */}
+              </QueueAnim>
+            </Col>
           </Row>
         </div>
       </div>

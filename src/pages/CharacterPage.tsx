@@ -47,18 +47,15 @@ const CharacterPage: React.FC<myProps> = (props: myProps) => {
       <div>
         <CustomPageHeader titleString={character.name} />
         <div className='site-wrapper'>
-          <div className="site-layout-content">
-            {/* <Title level={3}>Created by: {company}</Title> */}
+          <div className="pageTopper transition">
             <Title level={4}>{character.longDesc}</Title>
-
-            <Divider />
-
+          </div>
+          <div className="site-layout-content transition">
             <List 
               grid={{ gutter: 0, column: 16 }}
               style={{
-                  overflow: "auto",
-                  height: "80vh",
-                  paddingRight: "25px"
+                  // overflow: "auto",
+                  // height: "80vh",
               }}
             >
                 <QueueAnim>

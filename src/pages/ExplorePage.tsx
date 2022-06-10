@@ -16,14 +16,11 @@ const ExplorePage: React.FC<myProps> = (props: myProps) => {
     <div>
         <CustomPageHeader titleString={"Explore All Comic Book TLDRs!"}/>
         <div className='site-wrapper'>
-          <div className="site-layout-content">
-
-
-          <ExploreSearchBar comics={comics} defaultVal={""} placeholder={"Search for your Favorite Comic Book"}></ExploreSearchBar>
-
-          <Divider />
+          <div className="site-layout-content transition">
+            <ExploreSearchBar comics={comics} defaultVal={""} placeholder={"Search for your Favorite Comic Book"}></ExploreSearchBar>
+            <Divider />
+          </div>
         </div>
-      </div>
     </div>
   );
 }

@@ -1,13 +1,15 @@
 @import '~antd/dist/antd.less';
 
+
 .site-wrapper {
   border: black 8px solid;
-
+  background-color: rgb(225, 225, 225);
   // #b64082;
   //  #4367b0;
 }
+
 .site-layout-content {
-  min-height: 85vh;
+  min-height: 80vh;
   margin: 2vw;
   padding: 24px;
   background: #b64040;
@@ -17,6 +19,14 @@
   //  #4367b0;
 }
 
+.pageTopper {
+  margin: 2vw;
+  margin-bottom: 0;
+  padding: 24px;
+  background: rgb(229, 229, 0);
+  border: black 8px solid;
+  font-family: "Comic Sans MS", "Comic Sans";
+}
 
 .logo {
   float: left;
@@ -42,12 +52,13 @@
 
 .card {
   background-color: rgb(237, 237, 237);
-  border: black 4px solid;
+  border: black 8px solid;
 }
 .card:hover{
   background-color: white;
   box-shadow: 10px 10px;
-  border: black 4px solid;
+  border: black 8px solid;
+  border-top: #40B6B6 8px solid;;
 }
 
 .tag {
@@ -60,6 +71,13 @@
   box-shadow: 0px 0px;
 }
 
+.transition{
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition:all 0.5s ease-in-out;
+  -o-transition:all 0.5s ease-in-out;
+  transition:all 0.5s ease-in-out;
+}
+
 .searchBar:hover {
   border: #308352 5px solid;
   box-shadow: 10px 10px;
@@ -69,6 +87,10 @@
   border:#40B6B6 5px solid;
   box-shadow: 15px 15px;
 
+}
+
+.ant-input-wrapper {
+  width: 100.2%
 }
 
 // .searchBar {

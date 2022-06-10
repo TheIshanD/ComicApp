@@ -19,7 +19,7 @@ import CharacterPage from './pages/CharacterPage';
 const { Header, Content, Footer } = Layout;
 
 const App: React.FC = () => {
-  const [currMenuKeys, setCurrMenuKeys] = useState<string[]>(["explore"]);
+  const [currMenuKeys, setCurrMenuKeys] = useState<string[]>([""]);
 
   const [comics, setComics] = useState<Comic[]>([])
   const comicsCollectionRef = collection(db, "comics");
@@ -107,7 +107,7 @@ const App: React.FC = () => {
             />
         </Link>
         <Menu
-          style={{backgroundColor: "black", border: "5px"}}
+          style={{backgroundColor: "black", border: "5px", fontWeight: "bold", fontStyle: "Comic Sans MS"}}
           theme="dark"
           mode="horizontal"
           selectedKeys={currMenuKeys}

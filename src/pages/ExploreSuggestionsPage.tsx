@@ -65,7 +65,7 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
         <div>
             <CustomPageHeader titleString={"Explore All Comic Book TLDRs!"}/>
             <div className='site-wrapper'>
-                <div className="site-layout-content">
+                <div className="site-layout-content transition">
                     
                     <ExploreSearchBar comics={comics} defaultVal={value} placeholder={"Search for your Favorite Comic Book"}></ExploreSearchBar>
 
@@ -83,14 +83,14 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
                                 }
                             />
                         }
-                        <QueueAnim >
-                        {comicSuggestions.length > 0 ?
-                            comicSuggestions.map((comic: Comic, index: number)=>{
-                                return (<List.Item key={index}>
-                                    <ComicCard comic={comic} />
-                                </List.Item>)
-                            }) : null
-                        }
+                        <QueueAnim duration={1500}>
+                            {comicSuggestions.length > 0 ?
+                                comicSuggestions.map((comic: Comic, index: number)=>{
+                                    return (<List.Item key={index}>
+                                        <ComicCard comic={comic} />
+                                    </List.Item>)
+                                }) : null
+                            }
                         </ QueueAnim>
                     </List>
                 </div>

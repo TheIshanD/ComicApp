@@ -28,7 +28,7 @@ const CategoryPage: React.FC<myProps> = (props: myProps) => {
     <div>
       <CustomPageHeader titleString={category} />
       <div className='site-wrapper'>
-        <div className="site-layout-content">
+        <div className="site-layout-content transition">
           <List grid={{ gutter: 16, column: 4 }}>
             <QueueAnim>
               {

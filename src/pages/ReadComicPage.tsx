@@ -11,6 +11,7 @@ interface myProps {
 const ReadComicPage: React.FC<myProps> = (props: myProps) => {
     const location = useLocation()
     const state = location.state as {comic: Comic}
+    const {Text, Title} = Typography
 
     const navigate = useNavigate();
 
@@ -25,11 +26,10 @@ const ReadComicPage: React.FC<myProps> = (props: myProps) => {
         const comic = state.comic;
         return (
             <div>
-                <CustomPageHeader titleString={comic.title} />
+                <CustomPageHeader titleString={"TLDR: ".concat(comic.title)} />
                 <div className='site-wrapper'>
-                    <div className="site-layout-content">
-                        <Typography>{comic.company}</Typography>
-                        <Typography>{comic.tldr}</Typography>
+                    <div className="site-layout-content transition">
+                        <Title level={3}>{comic.tldr}</Title>
                     </div>
                 </div>
             </div>

@@ -64,7 +64,7 @@ const ExploreSearchBar: React.FC<myProps> = (props: myProps) => {
   return (
     <div
     id='comicSearcher'
-        className="searchBar"
+        className="searchBar transition"
         >
       <AutoComplete 
         options={options}
