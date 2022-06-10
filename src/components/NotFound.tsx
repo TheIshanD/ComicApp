@@ -7,15 +7,15 @@ interface myProps {
   comics: Comic[],
 }
 
-const ExplorePage: React.FC<myProps> = (props: myProps) => {
+const NotFound: React.FC<myProps> = (props: myProps) => {
   const {comics} = props;
 
   return (
     <div className="site-layout-content">
-      <Typography>Explore Any and All Comic Book TLDRs</Typography>
-      <ExploreSearchBar comics={comics} defaultVal={""} placeholder={"Search for your Favorite Comic Book"}></ExploreSearchBar>
+        <Typography>404 Page Not Found</Typography>
+        <ExploreSearchBar comics={comics} defaultVal={""} placeholder={"Search for your Favorite Comic Book"}></ExploreSearchBar>
     </div>
   );
 }
 
-export default ExplorePage;
+export default NotFound;

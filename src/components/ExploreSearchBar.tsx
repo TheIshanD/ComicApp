@@ -6,6 +6,7 @@ import Comic from "../types/comicType"
 interface myProps {
   comics: Comic[],
   defaultVal: string,
+  placeholder: string,
 }
 
 const titlesToOptions = (comics: Comic[]) : {value: string}[]  => {
@@ -14,13 +15,12 @@ const titlesToOptions = (comics: Comic[]) : {value: string}[]  => {
 }
 
 const ExploreSearchBar: React.FC<myProps> = (props: myProps) => {
-  const { comics, defaultVal } = props;
+  const { comics, defaultVal, placeholder } = props;
 
   const tempOptions = titlesToOptions(comics);
 
   const [options, setOptions] = useState<{ value: string }[]>([]);
-  const [value, setValue] = useState<string>('');
-  const [focused, setFocused] = useState<boolean>(false);
+  const [value, setValue] = useState<string>(defaultVal);
 
   const navigate = useNavigate();
 
@@ -33,16 +33,16 @@ const ExploreSearchBar: React.FC<myProps> = (props: myProps) => {
   };
 
   const onSelect = (value: string) => {
-
   };
+
 
   const onChange = (data: string) => {
     setValue(data);
+    // defaultVal = data;
   };
 
   const search = (value: string) => {
     navigate("/explore", { state: { value }})
-    console.log("SEARCH UP NOW", value) // Replace with a searching action
   }
 
   return (
@@ -53,13 +53,11 @@ const ExploreSearchBar: React.FC<myProps> = (props: myProps) => {
         onSearch={onSearch}
         filterOption={true}
         onChange={onChange}
-        onFocus={()=>{setFocused(true)}}
-        onBlur={()=>{setFocused(false)}}
         defaultValue={defaultVal}
         dropdownMatchSelectWidth={false}
         open={false}
       >
-        <Input.Search size="large" placeholder="Search for your Favorite Comic Book" enterButton onSearch={()=>{search(value)}}/>
+        <Input.Search size="large" placeholder={placeholder} enterButton onSearch={()=>{search(value)}}/>
       </AutoComplete>
   );
 }

@@ -1,4 +1,4 @@
-import { Card, List, Typography } from 'antd';
+import { Card, Divider, List, Typography } from 'antd';
 import React from 'react';
 import { Col, Row } from 'antd';
 import Comic from "../types/comicType";
@@ -37,16 +37,26 @@ const CharacterPage: React.FC<myProps> = (props: myProps) => {
       <Typography>{character.name}</Typography>
       <Typography>Made by: {company}</Typography>
       <Typography>{character.longDesc}</Typography>
-      <Row gutter={[0, 16]}>
+
+      <Divider />
+
+      <List 
+        grid={{ gutter: 0, column: 16 }}
+        style={{
+            overflow: "auto",
+            height: "80vh",
+            paddingRight: "25px"
+        }}
+       >
           {
               hasCharacter.map((comic: Comic, index: number)=>{
-                    return (<Col key={index} span={24}>
+                    return (<List.Item key={index}>
                         <ComicCard comic={comic} />
-                    </Col>)
+                    </List.Item>)
                   }
               )
             }
-      </Row>
+      </List>
     </div>
   );
 }

@@ -1,6 +1,5 @@
-import { Typography, Divider } from 'antd';
+import { Typography } from 'antd';
 import React, { useEffect } from 'react';
-import ExploreSearchBar from './ExploreSearchBar';
 import Comic from "../types/comicType";
 import { useLocation } from 'react-router-dom';
 

@@ -1,4 +1,4 @@
-import { Layout, Menu } from 'antd';
+import { Image, Layout, Menu } from 'antd';
 import React, { useState, useEffect } from 'react';
 import './App.less';
 import ExplorePage from './components/ExplorePage';
@@ -7,7 +7,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import {db} from "./firebase-config";
 import Comic from "./types/comicType"
 
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate, Link } from "react-router-dom";
 import CategoriesPage from './components/CategoriesPage';
 import CategoryPage from './components/CategoryPage';
 import ReadComicPage from './components/ReadComicPage';
@@ -15,11 +15,13 @@ import CompanyComicsPage from "./components/CompanyCharactersPage"
 import ExploreSuggestionsPage from './components/ExploreSuggestionsPage';
 import Character from './types/characterType';
 import CharacterPage from './components/CharacterPage';
+import NotFound from './components/NotFound';
 
 const { Header, Content, Footer } = Layout;
 
 const App: React.FC = () => {
-  //Get comics
+  const [currMenuKeys, setCurrMenuKeys] = useState<string[]>(["explore"]);
+
   const [comics, setComics] = useState<Comic[]>([])
   const comicsCollectionRef = collection(db, "comics");
 
@@ -67,23 +69,27 @@ const App: React.FC = () => {
   }, []) 
 
   const menuItems = [
-    { label: 'Explore', key: 'item-1' },
-    { label: 'Categories', key: 'item-2' },
-    { label: 'DC', key: 'item-3' },
-    { label: 'Marvel', key: 'item-4' },
+    { label: 'Explore', key: 'explore' },
+    { label: 'Catagories', key: 'catagories' },
+    { label: 'DC', key: 'dc' },
+    { label: 'Marvel', key: 'marvel' },
   ]
 
   const onMenuItemClicked = (props : {item: any, key: String, keyPath: String[], domEvent: any}) => {
     const {key} = props;
 
-    if(key === "item-1") {
+    if(key === "explore") {
       navigate("/")
-    } else if(key === "item-2") {
-      navigate("/categories")
-    } else if(key === "item-3") {
+      setCurrMenuKeys(["explore"])
+    } else if(key === "catagories") {
+      navigate("/catagories")
+      setCurrMenuKeys(["catagories"])
+    } else if(key === "dc") {
       navigate("/DC")
-    } else if(key === "item-4") {
+      setCurrMenuKeys(["dc"])
+    } else if(key === "marvel") {
       navigate("/Marvel")
+      setCurrMenuKeys(["marvel"])
     }
     
   }
@@ -91,33 +97,46 @@ const App: React.FC = () => {
   return (
     <Layout className="layout">
       <Header style={{
-        backgroundColor: "white",
+        backgroundColor: "black",
       }}>
-        <div className="logo" />
+
+        <Link to="/" onClick={()=>{setCurrMenuKeys(["explore"])}}>
+          <img
+            className='logo'
+            src="/logo.png"
+            height="64"
+            />
+        </Link>
         <Menu
-          theme="light"
+          style={{backgroundColor: "black", border: "5px"}}
+          theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={['1']}
+          selectedKeys={currMenuKeys}
           items={menuItems}
           onClick={onMenuItemClicked}
         />
       </Header>
+
       <Content >
         <Routes>
           <Route path="/" element={<ExplorePage comics={comics}/>} />
           <Route path="/explore" element={<ExploreSuggestionsPage comics={comics} />}/>
-          <Route path="categories" element={<CategoriesPage comics={comics} />} />
-          <Route path="categories/action" element={<CategoryPage comics={comics} category={"Action/adventure"} />} />
-          <Route path="categories/romance" element={<CategoryPage comics={comics} category={"Romance"} />} />
-          <Route path="categories/comedy" element={<CategoryPage comics={comics} category={"Comedy"} />} />
+          <Route path="catagories" element={<CategoriesPage comics={comics} />} />
+          <Route path="catagories/action" element={<CategoryPage comics={comics} category={"Action/adventure"} />} />
+          <Route path="catagories/romance" element={<CategoryPage comics={comics} category={"Romance"} />} />
+          <Route path="catagories/comedy" element={<CategoryPage comics={comics} category={"Comedy"} />} />
           <Route path="read-comic" element={<ReadComicPage comics={comics} />} />
           <Route path="Marvel" element={<CompanyComicsPage comics={comics} company={"Marvel"} characters={characters}/>} />
           <Route path="DC" element={<CompanyComicsPage comics={comics} company={"DC"} characters={characters}/>} />
           <Route path="Marvel/character-info" element={<CharacterPage comics={comics} company={"Marvel"}/>} />
           <Route path="DC/character-info" element={<CharacterPage comics={comics} company={"DC"}/>} />
+          <Route
+            path="*"
+            element={<Navigate to="/" replace />}
+          />
         </Routes>
       </Content>
-      <Footer style={{ textAlign: 'center' }}>TLDR ©2022 Created by Ishan Dasgupta and Aaditya Ganesan</Footer>
+      <Footer className='footer'>TLDR© Copyright 2022 Founded by Ishan Dasgupta and Aaditya Ganesan</Footer>
     </Layout>
   );
 }
