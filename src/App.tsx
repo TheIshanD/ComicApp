@@ -119,7 +119,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <Layout className="layout">
+    <Layout className="layout app">
       <Header style={{
         backgroundColor: "black",
       }}>
