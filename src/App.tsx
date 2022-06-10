@@ -69,7 +69,7 @@ const App: React.FC = () => {
 
   const menuItems = [
     { label: 'Explore', key: 'explore' },
-    { label: 'Catagories', key: 'catagories' },
+    { label: 'Catagories', key: 'categories' },
     { label: 'DC', key: 'dc' },
     { label: 'Marvel', key: 'marvel' },
   ]
@@ -80,9 +80,9 @@ const App: React.FC = () => {
     if(key === "explore") {
       navigate("/")
       setCurrMenuKeys(["explore"])
-    } else if(key === "catagories") {
-      navigate("/catagories")
-      setCurrMenuKeys(["catagories"])
+    } else if(key === "categories") {
+      navigate("/categories")
+      setCurrMenuKeys(["categories"])
     } else if(key === "dc") {
       navigate("/DC")
       setCurrMenuKeys(["dc"])
@@ -120,10 +120,10 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<ExplorePage comics={comics}/>} />
           <Route path="/explore" element={<ExploreSuggestionsPage comics={comics} />}/>
-          <Route path="catagories" element={<CategoriesPage comics={comics} />} />
-          <Route path="catagories/action" element={<CategoryPage comics={comics} category={"Action"} />} />
-          <Route path="catagories/romance" element={<CategoryPage comics={comics} category={"Romance"} />} />
-          <Route path="catagories/comedy" element={<CategoryPage comics={comics} category={"Comedy"} />} />
+          <Route path="categories" element={<CategoriesPage comics={comics} />} />
+          <Route path="categories/action" element={<CategoryPage comics={comics} category={"Action"} />} />
+          <Route path="categories/romance" element={<CategoryPage comics={comics} category={"Romance"} />} />
+          <Route path="categories/comedy" element={<CategoryPage comics={comics} category={"Comedy"} />} />
           <Route path="read-comic" element={<ReadComicPage comics={comics} />} />
           <Route path="Marvel" element={<CompanyComicsPage comics={comics} company={"Marvel"} characters={characters}/>} />
           <Route path="DC" element={<CompanyComicsPage comics={comics} company={"DC"} characters={characters}/>} />

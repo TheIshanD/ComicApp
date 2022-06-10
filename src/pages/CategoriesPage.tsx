@@ -28,7 +28,7 @@ const CategoriesPage: React.FC<myProps> = (props: myProps) => {
                 <Card className="card" hoverable={true} onClick={()=>{navigate("action")}} key={"1"}>
                   <Title level={3}>Action</Title>
                   <Divider orientation="left" plain={true} orientationMargin={0}>
-                    <Text type="secondary">Catagory TLDR</Text>
+                    <Text type="secondary">Category TLDR</Text>
                   </Divider>
                   <Text>Juicy Stuff</Text>
                 </Card>
@@ -40,7 +40,7 @@ const CategoriesPage: React.FC<myProps> = (props: myProps) => {
               <Card className="card" hoverable={true} onClick={()=>{navigate("comedy")}} key={"1"}>
                 <Title level={3}>Comedy</Title>
                 <Divider orientation="left" plain={true} orientationMargin={0}>
-                  <Text type="secondary">Catagory TLDR</Text>
+                  <Text type="secondary">Category TLDR</Text>
                 </Divider>
                 <Text>Juicy Stuff</Text>
               </Card>
@@ -52,7 +52,7 @@ const CategoriesPage: React.FC<myProps> = (props: myProps) => {
                 <Card className="card" hoverable={true} onClick={()=>{navigate("romance")}} key={"1"}>
                   <Title level={3}>Romance</Title>
                   <Divider orientation="left" plain={true} orientationMargin={0}>
-                    <Text type="secondary">Catagory TLDR</Text>
+                    <Text type="secondary">Catesgory TLDR</Text>
                   </Divider>
                   <Text>Juicy Stuff</Text>
                 </Card>
