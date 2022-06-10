@@ -6,13 +6,17 @@ import { useNavigate } from "react-router-dom";
 
 import QueueAnim from 'rc-queue-anim';
 import CustomPageHeader from '../components/CustomPageHeader';
+import Category from '../types/categoryType';
 
 interface myProps {
   comics: Comic[],
+  categories: Category[],
 }
 
 const CategoriesPage: React.FC<myProps> = (props: myProps) => {
   const { Title, Text } = Typography;
+
+  const { categories } = props;
 
   const navigate = useNavigate();
   return (
@@ -22,42 +26,24 @@ const CategoriesPage: React.FC<myProps> = (props: myProps) => {
         <div className="site-layout-content transition">
           <Row justify="space-between" gutter={[16, 16]}>
 
-            {/* KEEP IN ALPHABETICAL ORDER PLEASE */}
-            <Col span={12} key={"1"}>
-              <QueueAnim type={"bottom"} duration={1500}>
-                <Card className="card" hoverable={true} onClick={()=>{navigate("action")}} key={"1"}>
-                  <Title level={3}>Action</Title>
-                  <Divider orientation="left" plain={true} orientationMargin={0}>
-                    <Text type="secondary">Category TLDR</Text>
-                  </Divider>
-                  <Text>Juicy Stuff</Text>
-                </Card>
-              </QueueAnim>
-            </Col>
-              
-            <Col span={12} key={"3"}>
-              <QueueAnim type={"bottom"} duration={1500}>
-              <Card className="card" hoverable={true} onClick={()=>{navigate("comedy")}} key={"1"}>
-                <Title level={3}>Comedy</Title>
-                <Divider orientation="left" plain={true} orientationMargin={0}>
-                  <Text type="secondary">Category TLDR</Text>
-                </Divider>
-                <Text>Juicy Stuff</Text>
-              </Card>
-              </QueueAnim>
-            </Col>
-
-            <Col span={12} key={"2"}>
-              <QueueAnim type={"bottom"} duration={1500}>
-                <Card className="card" hoverable={true} onClick={()=>{navigate("romance")}} key={"1"}>
-                  <Title level={3}>Romance</Title>
-                  <Divider orientation="left" plain={true} orientationMargin={0}>
-                    <Text type="secondary">Catesgory TLDR</Text>
-                  </Divider>
-                  <Text>Juicy Stuff</Text>
-                </Card>
-              </QueueAnim>
-            </Col>
+            {
+              categories.map((category, index)=>{
+                const loc = category.title.toLowerCase()
+                return (
+                  <Col span={12} key={index}>
+                    <QueueAnim type={"bottom"} duration={1500}>
+                      <Card className="card" hoverable={true} onClick={()=>{navigate(loc)}} key={"1"}>
+                        <Title level={3}>{category.title}</Title>
+                        <Divider orientation="left" plain={true} orientationMargin={0}>
+                          <Text type="secondary">Category TLDR</Text>
+                        </Divider>
+                        <Text>{category.description}</Text>
+                      </Card>
+                    </QueueAnim>
+                   </Col>
+                   );
+                })
+            }
           </Row>
         </div>
       </div>

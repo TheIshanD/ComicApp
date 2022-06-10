@@ -33,7 +33,7 @@ const CompanyCharacterPage: React.FC<myProps> = (props: myProps) => {
 
   return (
     <div>
-      <CustomPageHeader titleString={company}/>
+      <CustomPageHeader titleString={company.concat(" Characters")}/>
       <div className='site-wrapper'>
         <div className="site-layout-content transition">
           <Row gutter={[16, 16]}>

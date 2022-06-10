@@ -15,6 +15,7 @@ import CompanyComicsPage from "./pages/CompanyCharactersPage"
 import ExploreSuggestionsPage from './pages/ExploreSuggestionsPage';
 import Character from './types/characterType';
 import CharacterPage from './pages/CharacterPage';
+import Category from './types/categoryType';
 
 const { Header, Content, Footer } = Layout;
 
@@ -62,9 +63,33 @@ const App: React.FC = () => {
     }));
   }
 
+  const [categories, setCategories] = useState<Category[]>([])
+  const categoryCollectionRef = collection(db, "categories");
+
+
+  const getCategories = async () => {
+    const data = await getDocs(categoryCollectionRef);
+    const tempCategories = data.docs.map((doc)=> {
+      return {
+        title: doc.data().title,
+        description: doc.data().description,
+        id: doc.id,
+      }
+    })
+
+    tempCategories.sort((a, b) => {
+      if(b.title > a.title) 
+        return 1
+      return -1;
+    })
+
+    setCategories(tempCategories);
+  }
+
   useEffect(()=>{
     getComics();
     getCharacters();
+    getCategories();
   }, []) 
 
   const menuItems = [
@@ -120,7 +145,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<ExplorePage comics={comics}/>} />
           <Route path="/explore" element={<ExploreSuggestionsPage comics={comics} />}/>
-          <Route path="categories" element={<CategoriesPage comics={comics} />} />
+          <Route path="categories" element={<CategoriesPage comics={comics} categories={categories}/>} />
           <Route path="categories/action" element={<CategoryPage comics={comics} category={"Action"} />} />
           <Route path="categories/romance" element={<CategoryPage comics={comics} category={"Romance"} />} />
           <Route path="categories/comedy" element={<CategoryPage comics={comics} category={"Comedy"} />} />

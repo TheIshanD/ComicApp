@@ -58,7 +58,7 @@ const CharacterPage: React.FC<myProps> = (props: myProps) => {
                   // height: "80vh",
               }}
             >
-                <QueueAnim>
+                <QueueAnim duration={1500}>
                   {
                       hasCharacter.map((comic: Comic, index: number)=>{
                             return (<List.Item key={index}>
