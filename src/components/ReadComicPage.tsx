@@ -2,6 +2,7 @@ import { Typography } from 'antd';
 import React, { useEffect } from 'react';
 import Comic from "../types/comicType";
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import CustomPageHeader from './CustomPageHeader';
 
 interface myProps {
   comics: Comic[],
@@ -23,10 +24,12 @@ const ReadComicPage: React.FC<myProps> = (props: myProps) => {
     } else {
         const comic = state.comic;
         return (
-            <div className="site-layout-content">
-                <Typography>{comic.title}</Typography>
-                <Typography>{comic.company}</Typography>
-                <Typography>{comic.tldr}</Typography>
+            <div>
+                <CustomPageHeader titleString={comic.title} />
+                <div className="site-layout-content">
+                    <Typography>{comic.company}</Typography>
+                    <Typography>{comic.tldr}</Typography>
+                </div>
             </div>
         );
     }

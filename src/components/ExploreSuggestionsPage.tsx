@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import ComicCard from './ComicCard';
 
 import QueueAnim from 'rc-queue-anim';
+import CustomPageHeader from './CustomPageHeader';
 
 interface myProps {
   comics: Comic[],
@@ -61,39 +62,38 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
     const comicSuggestions = optionSorter(comics);
   
     return (
-      <div className="site-layout-content">
-          <Title level={1}>Explore All Comic Book TLDRs:</Title>
-  
-          {/* idk im questioning this divider too */}
-          <Divider /> 
-          
-          <ExploreSearchBar comics={comics} defaultVal={value} placeholder={"Search for your Favorite Comic Book"}></ExploreSearchBar>
-  
-          <Divider />
-  
-          <List grid={{ gutter: 16, column: 4 }} style={{
-            //   overflow: "auto",
-            //   height: "80vh",
-            //   paddingRight: "25px"
-          }}>
-              {comicSuggestions.length === 0 &&
-                  <Empty 
-                      description={
-                          <Title level={1}>No comics found. Try seaching something else!</Title>
-                      }
-                  />
-              }
-              <QueueAnim >
-                {comicSuggestions.length > 0 ?
-                    comicSuggestions.map((comic: Comic, index: number)=>{
-                        return (<List.Item key={index}>
-                            <ComicCard comic={comic} />
-                        </List.Item>)
-                    }) : null
-                }
-              </ QueueAnim>
-          </List>
-      </div>
+        <div>
+            <CustomPageHeader titleString={"Explore All Comic Book TLDRs!"}/>
+            <div className="site-layout-content">
+                
+                <ExploreSearchBar comics={comics} defaultVal={value} placeholder={"Search for your Favorite Comic Book"}></ExploreSearchBar>
+
+                <Divider />
+
+                <List grid={{ gutter: 200, column: 4 }} style={{
+                //   overflow: "auto",
+                //   height: "80vh",
+                //   paddingRight: "25px"
+                }}>
+                    {comicSuggestions.length === 0 &&
+                        <Empty 
+                            description={
+                                <Title level={1}>No comics found. Try seaching something else!</Title>
+                            }
+                        />
+                    }
+                    <QueueAnim >
+                    {comicSuggestions.length > 0 ?
+                        comicSuggestions.map((comic: Comic, index: number)=>{
+                            return (<List.Item key={index}>
+                                <ComicCard comic={comic} />
+                            </List.Item>)
+                        }) : null
+                    }
+                    </ QueueAnim>
+                </List>
+            </div>
+        </div>
     );
   }
 

@@ -22,28 +22,26 @@ const ComicCard: React.FC<myProps> = (props: myProps) => {
         return 1;
     }) 
 
-
-
     return (
-        <Card hoverable={true} onClick={()=>{navigate("/read-comic", {state: {comic: comic}})}}>
+        <Card className="card" hoverable={true} onClick={()=>{navigate("/read-comic", {state: {comic: comic}})}}>
             <Space style={{
                 display: "flex",
                 justifyContent: "space-between",
             }} align="center">
-                <Title style={{marginTop: "auto", marginBottom: "auto"}} level={5}>{comic.title}</Title>
+                <Title style={{marginTop: "auto", marginBottom: "auto"}} level={4}>{comic.title}</Title>
                     <Space>
                         {
                             tagList.map((tag, index)=>{
                                 return (
-                                    <div key={index}>
+                                    <div key={index}> 
                                         {tag === "Action" &&
-                                            <Tag color="#f50">{tag}</Tag>
-                                        }
-                                        {tag === "Romance" &&
-                                            <Tag color="#108ee9">{tag}</Tag>
+                                            <Tag className="tag" color="#f50">{tag}</Tag>
                                         }
                                         {tag === "Comedy" &&
-                                            <Tag color="#87d068">{tag}</Tag>
+                                            <Tag className="tag" color="#87d068">{tag}</Tag>
+                                        }
+                                        {tag === "Romance" &&
+                                            <Tag className="tag" color="#108ee9">{tag}</Tag>
                                         }
                                     </div>
                                 )
@@ -51,8 +49,10 @@ const ComicCard: React.FC<myProps> = (props: myProps) => {
                         }
                     </Space>
                 </Space>
-            <Divider />
-            <Text>TLDR^2: {comic.tldr2}</Text>
+            <Divider orientation="left" plain={true} orientationMargin={0}>
+                <Text type="secondary">TLDR^2</Text>
+            </Divider>
+            <Text>{comic.tldr2}</Text>
         </Card>
     );
 }

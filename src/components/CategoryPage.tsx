@@ -1,4 +1,4 @@
-import { Card, List, Typography } from 'antd';
+import { Card, List, PageHeader, Typography } from 'antd';
 import React from 'react';
 import { Col, Row } from 'antd';
 import Comic from "../types/comicType";
@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import ComicCard from './ComicCard';
 
 import QueueAnim from 'rc-queue-anim';
+import CustomPageHeader from './CustomPageHeader';
 
 interface myProps {
   comics: Comic[],
@@ -17,13 +18,16 @@ const CategoryPage: React.FC<myProps> = (props: myProps) => {
 
   const { Title } = Typography;
 
+  const navigate = useNavigate();
+
   const ofCategory = comics.filter((comic:Comic) : boolean => {
       return comic.tags.includes(category)
   })
 
   return (
+    <div>
+      <CustomPageHeader titleString={category} />
     <div className="site-layout-content">
-      <Title level={1}>{category}</Title>
       <List grid={{ gutter: 16, column: 4 }}>
         <QueueAnim>
           {
@@ -36,6 +40,7 @@ const CategoryPage: React.FC<myProps> = (props: myProps) => {
             }
           </QueueAnim>
       </List>
+    </div>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import Character from '../types/characterType';
 import ComicCard from './ComicCard';
 
 import QueueAnim from 'rc-queue-anim';
+import CustomPageHeader from './CustomPageHeader';
 
 interface myProps {
   comics: Comic[],
@@ -43,32 +44,34 @@ const CharacterPage: React.FC<myProps> = (props: myProps) => {
     })
 
     return (
-      <div className="site-layout-content">
-        <Title level={1}>{character.name}</Title>
-        <Title level={3}>Created by: {company}</Title>
-        <Title level={4}>{character.longDesc}</Title>
+      <div>
+        <CustomPageHeader titleString={character.name} />
+        <div className="site-layout-content">
+          {/* <Title level={3}>Created by: {company}</Title> */}
+          <Title level={4}>{character.longDesc}</Title>
 
-        <Divider />
+          <Divider />
 
-        <List 
-          grid={{ gutter: 0, column: 16 }}
-          style={{
-              overflow: "auto",
-              height: "80vh",
-              paddingRight: "25px"
-          }}
-        >
-            <QueueAnim>
-              {
-                  hasCharacter.map((comic: Comic, index: number)=>{
-                        return (<List.Item key={index}>
-                            <ComicCard comic={comic} />
-                        </List.Item>)
-                      }
-                  )
-                }
-              </QueueAnim>
-        </List>
+          <List 
+            grid={{ gutter: 0, column: 16 }}
+            style={{
+                overflow: "auto",
+                height: "80vh",
+                paddingRight: "25px"
+            }}
+          >
+              <QueueAnim>
+                {
+                    hasCharacter.map((comic: Comic, index: number)=>{
+                          return (<List.Item key={index}>
+                              <ComicCard comic={comic} />
+                          </List.Item>)
+                        }
+                    )
+                  }
+                </QueueAnim>
+          </List>
+        </div>
       </div>
     ); 
   }

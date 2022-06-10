@@ -4,6 +4,7 @@ import { Col, Row } from 'antd';
 import Comic from "../types/comicType";
 import { useNavigate } from "react-router-dom";
 import Character from '../types/characterType';
+import CustomPageHeader from './CustomPageHeader';
 
 interface myProps {
   comics: Comic[],
@@ -30,23 +31,26 @@ const CompanyCharacterPage: React.FC<myProps> = (props: myProps) => {
   })
 
   return (
-    <div className="site-layout-content">
-      <Title level={1}>{company}</Title>
-      <Divider />
-      <Row gutter={[8, 16]}>
-          {
-              ofCompany.map((character: Character, index: number)=>{
-                    return (<Col key={index} span={12}>
-                        <Card hoverable={true} onClick={()=>{navigate("character-info", {state: {character: character}})}}>
-                        <Title level={4}>{character.name}</Title>
-                        <Divider />
-                        <Text>{character.smallDesc}</Text>
-                        </Card>
-                    </Col>)
-                  }
-              )
-            }
-      </Row>
+    <div>
+      <CustomPageHeader titleString={company}/>
+      <div className="site-layout-content">
+        <Row gutter={[16, 16]}>
+            {
+                ofCompany.map((character: Character, index: number)=>{
+                      return (<Col key={index} span={12}>
+                          <Card className="card" hoverable={true} onClick={()=>{navigate("character-info", {state: {character: character}})}}>
+                            <Title level={3}>{character.name}</Title>
+                            <Divider orientation="left" plain={true} orientationMargin={0}>
+                              <Text type="secondary">Persona</Text>
+                            </Divider>
+                            <Text>{character.smallDesc}</Text>
+                          </Card>
+                      </Col>)
+                    }
+                )
+              }
+        </Row>
+      </div>
     </div>
   );
 }
