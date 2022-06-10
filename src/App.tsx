@@ -94,7 +94,7 @@ const App: React.FC = () => {
 
   const menuItems = [
     { label: 'Explore', key: 'explore' },
-    { label: 'Catagories', key: 'categories' },
+    { label: 'Categories', key: 'categories' },
     { label: 'DC', key: 'dc' },
     { label: 'Marvel', key: 'marvel' },
   ]
