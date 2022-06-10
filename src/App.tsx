@@ -15,7 +15,6 @@ import CompanyComicsPage from "./components/CompanyCharactersPage"
 import ExploreSuggestionsPage from './components/ExploreSuggestionsPage';
 import Character from './types/characterType';
 import CharacterPage from './components/CharacterPage';
-import NotFound from './components/NotFound';
 
 const { Header, Content, Footer } = Layout;
 
@@ -122,7 +121,7 @@ const App: React.FC = () => {
           <Route path="/" element={<ExplorePage comics={comics}/>} />
           <Route path="/explore" element={<ExploreSuggestionsPage comics={comics} />}/>
           <Route path="catagories" element={<CategoriesPage comics={comics} />} />
-          <Route path="catagories/action" element={<CategoryPage comics={comics} category={"Action/adventure"} />} />
+          <Route path="catagories/action" element={<CategoryPage comics={comics} category={"Action"} />} />
           <Route path="catagories/romance" element={<CategoryPage comics={comics} category={"Romance"} />} />
           <Route path="catagories/comedy" element={<CategoryPage comics={comics} category={"Comedy"} />} />
           <Route path="read-comic" element={<ReadComicPage comics={comics} />} />

@@ -1,4 +1,4 @@
-import { Card, List, Tag, Typography } from 'antd';
+import { Card, Divider, List, Tag, Typography } from 'antd';
 import React from 'react';
 import { Col, Row } from 'antd';
 import Comic from "../types/comicType";
@@ -12,6 +12,8 @@ const ComicCard: React.FC<myProps> = (props: myProps) => {
     const { comic } = props;
     const navigate = useNavigate();
 
+    const { Title, Text } = Typography;
+
     const tagList = comic.tags;
     tagList.sort((a,b)=>{
         if(b > a) {
@@ -22,7 +24,7 @@ const ComicCard: React.FC<myProps> = (props: myProps) => {
 
     return (
         <Card hoverable={true} onClick={()=>{navigate("/read-comic", {state: {comic: comic}})}}>
-            <Typography>{comic.title}</Typography>
+            <Title level={5}>{comic.title}</Title>
             {
                 tagList.map((tag, index)=>{
                     return (
@@ -30,7 +32,8 @@ const ComicCard: React.FC<myProps> = (props: myProps) => {
                     )
                 })
             }
-            <Typography>TLDR^2: {comic.tldr2}</Typography>
+            <Divider />
+            <Text>TLDR^2: {comic.tldr2}</Text>
         </Card>
     );
 }

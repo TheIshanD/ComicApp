@@ -15,13 +15,15 @@ interface myProps {
 const CategoryPage: React.FC<myProps> = (props: myProps) => {
   const {comics, category} = props;
 
+  const { Title } = Typography;
+
   const ofCategory = comics.filter((comic:Comic) : boolean => {
       return comic.tags.includes(category)
   })
 
   return (
     <div className="site-layout-content">
-      <Typography>{category}</Typography>
+      <Title level={1}>{category}</Title>
       <Row gutter={[0, 16]}>
           {
               ofCategory.map((comic: Comic, index: number)=>{
