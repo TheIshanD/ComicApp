@@ -5,12 +5,12 @@ import Comic from "../types/comicType";
 import { useNavigate } from "react-router-dom";
 import ComicCard from './ComicCard';
 
+import QueueAnim from 'rc-queue-anim';
+
 interface myProps {
   comics: Comic[],
   category: string,
 }
-
-
 
 const CategoryPage: React.FC<myProps> = (props: myProps) => {
   const {comics, category} = props;
@@ -24,16 +24,18 @@ const CategoryPage: React.FC<myProps> = (props: myProps) => {
   return (
     <div className="site-layout-content">
       <Title level={1}>{category}</Title>
-      <Row gutter={[0, 16]}>
+      <List grid={{ gutter: 16, column: 4 }}>
+        <QueueAnim>
           {
               ofCategory.map((comic: Comic, index: number)=>{
-                    return (<Col key={index} span={24}>
+                    return (<List.Item key={index}>
                         <ComicCard comic={comic} />
-                    </Col>)
+                    </List.Item>)
                   }
               )
             }
-      </Row>
+          </QueueAnim>
+      </List>
     </div>
   );
 }

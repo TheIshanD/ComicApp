@@ -6,6 +6,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Character from '../types/characterType';
 import ComicCard from './ComicCard';
 
+import QueueAnim from 'rc-queue-anim';
+
 interface myProps {
   comics: Comic[],
   company: string
@@ -56,14 +58,16 @@ const CharacterPage: React.FC<myProps> = (props: myProps) => {
               paddingRight: "25px"
           }}
         >
-            {
-                hasCharacter.map((comic: Comic, index: number)=>{
-                      return (<List.Item key={index}>
-                          <ComicCard comic={comic} />
-                      </List.Item>)
-                    }
-                )
-              }
+            <QueueAnim>
+              {
+                  hasCharacter.map((comic: Comic, index: number)=>{
+                        return (<List.Item key={index}>
+                            <ComicCard comic={comic} />
+                        </List.Item>)
+                      }
+                  )
+                }
+              </QueueAnim>
         </List>
       </div>
     ); 

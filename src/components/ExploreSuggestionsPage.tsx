@@ -5,6 +5,8 @@ import Comic from "../types/comicType";
 import { useLocation, useNavigate } from 'react-router-dom';
 import ComicCard from './ComicCard';
 
+import QueueAnim from 'rc-queue-anim';
+
 interface myProps {
   comics: Comic[],
 }
@@ -70,17 +72,10 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
           <Divider />
   
           <List grid={{ gutter: 16, column: 4 }} style={{
-              overflow: "auto",
-              height: "80vh",
-              paddingRight: "25px"
+            //   overflow: "auto",
+            //   height: "80vh",
+            //   paddingRight: "25px"
           }}>
-              {comicSuggestions.length > 0 &&
-                  comicSuggestions.map((comic: Comic, index: number)=>{
-                      return (<List.Item key={index}>
-                          <ComicCard comic={comic} />
-                      </List.Item>)
-                  })
-              }
               {comicSuggestions.length === 0 &&
                   <Empty 
                       description={
@@ -88,6 +83,15 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
                       }
                   />
               }
+              <QueueAnim >
+                {comicSuggestions.length > 0 ?
+                    comicSuggestions.map((comic: Comic, index: number)=>{
+                        return (<List.Item key={index}>
+                            <ComicCard comic={comic} />
+                        </List.Item>)
+                    }) : null
+                }
+              </ QueueAnim>
           </List>
       </div>
     );
