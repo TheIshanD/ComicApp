@@ -35,13 +35,13 @@ const ComicCard: React.FC<myProps> = (props: myProps) => {
                                 return (
                                     <div key={index}> 
                                         {tag === "Action" &&
-                                            <Tag className="tag" color="#f50">{tag}</Tag>
+                                            <div className="tag" style={{backgroundColor: "#f50"}}>{tag}</div>
                                         }
                                         {tag === "Comedy" &&
-                                            <Tag className="tag" color="#87d068">{tag}</Tag>
+                                            <div className="tag" style={{backgroundColor: "#87d068"}}>{tag}</div>
                                         }
                                         {tag === "Romance" &&
-                                            <Tag className="tag" color="#108ee9">{tag}</Tag>
+                                            <div className="tag" style={{backgroundColor: "#108ee9"}}>{tag}</div>
                                         }
                                     </div>
                                 )

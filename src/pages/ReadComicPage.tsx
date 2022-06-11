@@ -29,7 +29,7 @@ const ReadComicPage: React.FC<myProps> = (props: myProps) => {
                 <CustomPageHeader titleString={"TLDR: ".concat(comic.title)} />
                 <div className='site-wrapper'>
                     <div className="site-layout-content transition">
-                        <Title level={3}>{comic.tldr}</Title>
+                        <Text className='tldrText'>{comic.tldr}</Text>
                     </div>
                 </div>
             </div>

@@ -48,7 +48,7 @@ const CharacterPage: React.FC<myProps> = (props: myProps) => {
         <CustomPageHeader titleString={character.name} />
         <div className='site-wrapper'>
           <div className="pageTopper transition">
-            <Title level={4}>{character.longDesc}</Title>
+            <h4 className="characterLongDescString">{character.longDesc}</h4>
           </div>
           <div className="site-layout-content transition">
             <List 

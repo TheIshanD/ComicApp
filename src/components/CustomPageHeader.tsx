@@ -9,18 +9,16 @@ interface myProps {
 }
 
 const CustomPageHeader: React.FC<myProps> = (props: myProps) => {
-  const { Title } = Typography;
+  const { Title, Text } = Typography;
   const { titleString } = props;
 
   return (
     <Affix>
-      <PageHeader
-        style={{
-          backgroundColor:  "#111",
-          color: 'white',
-        }}
-        title={<Title style={{marginTop: "auto", marginBottom: "auto", color: 'white'}} level={1}>{titleString}</Title>}
-      />
+      <div 
+        className='header'
+        >
+        <h4 className='headerString' >{titleString}</h4>
+      </div>
       </Affix>
     );
 }

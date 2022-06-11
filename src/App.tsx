@@ -79,8 +79,8 @@ const App: React.FC = () => {
 
     tempCategories.sort((a, b) => {
       if(b.title > a.title) 
-        return 1
-      return -1;
+        return -1
+      return 1;
     })
 
     setCategories(tempCategories);
@@ -132,7 +132,8 @@ const App: React.FC = () => {
             />
         </Link>
         <Menu
-          style={{backgroundColor: "black", border: "5px", fontWeight: "bold", fontStyle: "Comic Sans MS"}}
+          style={{backgroundColor: "black", border: "5px", fontWeight: "bold"}}
+          className={"menu"}
           theme="dark"
           mode="horizontal"
           selectedKeys={currMenuKeys}
