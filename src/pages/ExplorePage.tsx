@@ -1,4 +1,4 @@
-import { Typography, Divider, PageHeader, List } from 'antd';
+import { Typography, Divider, PageHeader, List, Statistic } from 'antd';
 import React from 'react';
 import ExploreSearchBar from '../components/ExploreSearchBar';
 import Comic from "../types/comicType";
@@ -16,9 +16,8 @@ const ExplorePage: React.FC<myProps> = (props: myProps) => {
 
   const numComics = comics.length;
   const indexes:number[] = [];
-  console.log(comics);
+
   while(indexes.length < 5 && comics.length >= 5){
-    console.log("bruh")
     const randomIndex = Math.floor(Math.random() * numComics)
     if(indexes.indexOf(randomIndex) === -1) indexes.push(randomIndex);
   }
@@ -28,8 +27,8 @@ const ExplorePage: React.FC<myProps> = (props: myProps) => {
         <CustomPageHeader titleString={"Explore All Comic Book TLDRs!"}/>
         <div className='site-wrapper'>
           <div className="site-layout-content transition">
-            <ExploreSearchBar comics={comics} defaultVal={""} placeholder={"Search for your Favorite Comic Book"}></ExploreSearchBar>
-            <Divider />
+            <ExploreSearchBar comics={comics} defaultVal={""} placeholder={"Search for A Comic Book!!"}></ExploreSearchBar>
+            <Divider className='largeDiv'/>
             <div className="pageTopper transition">
               <h4 className="randomComicsString">{"Random Comics:"}</h4>
               <List grid={{ gutter: 200, column: 4 }}>

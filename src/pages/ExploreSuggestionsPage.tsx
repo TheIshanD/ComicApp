@@ -67,9 +67,9 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
             <div className='site-wrapper'>
                 <div className="site-layout-content transition">
                     
-                    <ExploreSearchBar comics={comics} defaultVal={value} placeholder={"Search for your Favorite Comic Book"}></ExploreSearchBar>
+                    <ExploreSearchBar comics={comics} defaultVal={value} placeholder={"Search for A Comic Book!!"}></ExploreSearchBar>
 
-                    <Divider />
+                    <Divider className='largeDiv'/>
 
                     <List grid={{ gutter: 200, column: 4 }} style={{
                     //   overflow: "auto",

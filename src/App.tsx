@@ -16,6 +16,7 @@ import ExploreSuggestionsPage from './pages/ExploreSuggestionsPage';
 import Character from './types/characterType';
 import CharacterPage from './pages/CharacterPage';
 import Category from './types/categoryType';
+import TheMission from './pages/TheMissionPage';
 
 const { Header, Content, Footer } = Layout;
 
@@ -97,6 +98,7 @@ const App: React.FC = () => {
     { label: 'Categories', key: 'categories' },
     { label: 'DC', key: 'dc' },
     { label: 'Marvel', key: 'marvel' },
+    { label: "The Mission", key: "the mission"}
   ]
 
   const onMenuItemClicked = (props : {item: any, key: String, keyPath: String[], domEvent: any}) => {
@@ -114,10 +116,16 @@ const App: React.FC = () => {
     } else if(key === "marvel") {
       navigate("/Marvel")
       setCurrMenuKeys(["marvel"])
+    } else if(key === "the mission") {
+      navigate("/THE-MISSION")
+      setCurrMenuKeys(["the mission"])
     }
-    
   }
 
+  const theMissionText = document.querySelector(".ant-menu")?.lastElementChild?.previousElementSibling?.firstElementChild;
+  theMissionText?.classList.add("specialMenuText")
+  console.log(theMissionText);
+  
   return (
     <Layout className="layout app">
       <Header style={{
@@ -155,6 +163,7 @@ const App: React.FC = () => {
           <Route path="DC" element={<CompanyComicsPage comics={comics} company={"DC"} characters={characters}/>} />
           <Route path="Marvel/character-info" element={<CharacterPage comics={comics} company={"Marvel"}/>} />
           <Route path="DC/character-info" element={<CharacterPage comics={comics} company={"DC"}/>} />
+          <Route path="/THE-MISSION" element={<TheMission />} />
           <Route
             path="*"
             element={<Navigate to="/" replace />}
