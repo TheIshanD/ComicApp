@@ -1,6 +1,6 @@
 import { Image, Layout, Menu } from 'antd';
 import React, { useState, useEffect } from 'react';
-import './App.less';
+import './App.css';
 import ExplorePage from './pages/ExplorePage';
 
 import { collection, getDocs } from 'firebase/firestore';
