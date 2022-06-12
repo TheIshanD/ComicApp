@@ -124,7 +124,6 @@ const App: React.FC = () => {
 
   const theMissionText = document.querySelector(".ant-menu")?.lastElementChild?.previousElementSibling?.firstElementChild;
   theMissionText?.classList.add("specialMenuText")
-  console.log(theMissionText);
   
   return (
     <Layout className="layout app">
