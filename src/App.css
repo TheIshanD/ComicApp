@@ -69,6 +69,11 @@
   background-color: #40B6B6;
 }
 
+.ant-menu-item:hover {
+  background-color: #478fb0 !important;
+}
+
+
 .card {
   background-color: rgb(237, 237, 237);
   border: black 8px solid;
