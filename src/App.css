@@ -1,6 +1,4 @@
 @import '~antd/dist/antd.css';
-@import url('https://fonts.cdnfonts.com/css/badaboom-bb');
-@import url('https://fonts.cdnfonts.com/css/homoarakhn');
 @import url("https://use.typekit.net/rrq3cgj.css");
 
 .app {
@@ -34,17 +32,20 @@
 .site-layout-content {
   min-height: 80vh;
   margin: 2vw;
-  padding: 24px;
+  padding: 2vw;
   background: #b64040;
   border: black 8px solid;
 }
 
 .pageTopper {
-  margin: 2vw;
   margin-bottom: 0;
-  padding: 24px;
-  background: gold;
+  padding: 2vw;
+  background: #ece3be;
   border: black 8px solid;
+}
+
+.charDesc {
+  margin: 2vw;
 }
 
 .logo {
@@ -144,9 +145,12 @@
 .tldrText {
   line-height: 48px;
   font-size: large;
+  color: black;
+  font-weight:900;
 }
 
 .specialMenuText {
+  
   color: gold
 }
 
@@ -155,7 +159,37 @@
   margin-bottom: 32px;
 }
 
+.socialMediaButton {
+  color: white;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 15px;
+  text-decoration: none;
+  min-width: 250px;
+  border: black 8px solid;
+  margin-right: 16px;
+}
 
+.socialMediaButtonsWrapper {
+  margin-top: 100px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
 
+.discordButton {
+  background-color: #7289da;
+}
 
+.instagramButton {
+  background-color: #E1306C;
+}
 
+.discordButton:hover {
+  background-color: #4760b8;
+}
+
+.instagramButton:hover {
+  background-color: #e01458;
+}
