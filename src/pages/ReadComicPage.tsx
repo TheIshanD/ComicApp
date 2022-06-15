@@ -1,4 +1,4 @@
-import { Typography } from "antd";
+import { Divider, Typography } from "antd";
 import React, { useEffect } from "react";
 import Comic from "../types/comicType";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
@@ -22,7 +22,14 @@ const ReadComicPage: React.FC<myProps> = (props: myProps) => {
 			<CustomPageHeader titleString={"TLDR: ".concat(comic.title)} />
 			<div className="site-wrapper">
 				<div className="site-layout-content transition">
-					<Text className="tldrText">{comic.tldr}</Text>
+					{comic.tldr.map((tldrParagraph, index) => {
+						return (
+							<div key={index}>
+								<Text className="tldrText">{tldrParagraph}</Text>
+								<Divider />
+							</div>
+						);
+					})}
 				</div>
 			</div>
 		</div>

@@ -3,7 +3,7 @@ interface Comic {
 	company: string;
 	characters: string[];
 	tags: string[];
-	tldr: string;
+	tldr: string[];
 	tldr2: string;
 	keywords: string[];
 	id: number;

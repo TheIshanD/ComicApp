@@ -32,17 +32,38 @@ const App: React.FC = () => {
 		const data = await getDocs(comicsCollectionRef);
 		setComics(
 			data.docs.map((doc) => {
-				const tempTagArr = doc.data().tags.map((tag: string): string => {
+				var tags = doc.data().tags;
+				if (typeof doc.data().tags === "string") {
+					tags = [doc.data().tags];
+				}
+
+				const tempTagArr = tags.map((tag: string): string => {
 					return tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase();
 				});
+
+				var tldr = doc.data().tldr;
+				if (typeof doc.data().tldr === "string") {
+					tldr = [doc.data().tldr];
+				}
+
+				var characters = doc.data().characters;
+				if (typeof doc.data().character === "string") {
+					characters = [doc.data().characters];
+				}
+
+				var keywords = doc.data().keywords;
+				if (typeof doc.data().keywords === "string") {
+					keywords = [doc.data().keywords];
+				}
+
 				return {
 					title: doc.data().title,
 					company: doc.data().company,
-					characters: doc.data().characters,
+					characters: characters,
 					tags: tempTagArr,
-					tldr: doc.data().tldr,
+					tldr: tldr,
 					tldr2: doc.data().tldr2,
-					keywords: doc.data().keywords,
+					keywords: keywords,
 					id: doc.data().id,
 					ranking: 0,
 				};
