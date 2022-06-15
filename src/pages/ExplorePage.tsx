@@ -17,7 +17,7 @@ const ExplorePage: React.FC<myProps> = (props: myProps) => {
 	const numComics = comics.length;
 	const indexes: number[] = [];
 
-	while (indexes.length < 5 && comics.length >= 5) {
+	while (indexes.length < 3 && comics.length >= 3) {
 		const randomIndex = Math.floor(Math.random() * numComics);
 		if (indexes.indexOf(randomIndex) === -1) indexes.push(randomIndex);
 	}
@@ -34,7 +34,7 @@ const ExplorePage: React.FC<myProps> = (props: myProps) => {
 					></ExploreSearchBar>
 					<Divider className="largeDiv" />
 					<div className="pageTopper transition">
-						<h4 className="randomComicsString">{"Random Comics:"}</h4>
+						<h2 className="randomComicsString">{"Random Comics:"}</h2>
 						<List grid={{ gutter: 200, column: 4 }}>
 							<QueueAnim duration={1500}>
 								{indexes.map((index, ind: number) => {

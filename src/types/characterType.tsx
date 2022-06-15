@@ -1,10 +1,10 @@
 interface Character {
-    name: string,
-    company: string,
-    smallDesc: string,
-    longDesc: string,
-    id: string,
-  }
+	name: string;
+	company: string;
+	smallDesc: string;
+	longDesc: string;
+	starterInt: number;
+	id: string;
+}
 
-
-  export default Character;
+export default Character;

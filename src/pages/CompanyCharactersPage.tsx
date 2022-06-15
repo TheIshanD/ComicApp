@@ -38,7 +38,6 @@ const CompanyCharacterPage: React.FC<myProps> = (props: myProps) => {
 				<div className="site-layout-content transition">
 					<Row gutter={[16, 16]}>
 						{ofCompany.map((character: Character, index: number) => {
-							console.log(character);
 							return (
 								<Col key={index} span={12}>
 									<QueueAnim type={"bottom"} duration={1500}>
@@ -47,9 +46,9 @@ const CompanyCharacterPage: React.FC<myProps> = (props: myProps) => {
 											hoverable={true}
 											key={"1"}
 											onClick={() => {
-												navigate("character-info", {
-													state: { character: character },
-												});
+												navigate(
+													character.name.toLowerCase().replaceAll(" ", "-")
+												);
 											}}
 										>
 											<Title level={3}>{character.name}</Title>

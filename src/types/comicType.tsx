@@ -6,7 +6,7 @@ interface Comic {
 	tldr: string;
 	tldr2: string;
 	keywords: string[];
-	id: string;
+	id: number;
 	ranking: number;
 }
 

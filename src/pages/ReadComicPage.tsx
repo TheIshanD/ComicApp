@@ -5,36 +5,28 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import CustomPageHeader from "../components/CustomPageHeader";
 
 interface myProps {
-	comics: Comic[];
+	comic: Comic;
 }
 
 const ReadComicPage: React.FC<myProps> = (props: myProps) => {
-	const location = useLocation();
-	const state = location.state as { comic: Comic };
 	const { Text, Title } = Typography;
-
+	const { comic } = props;
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
 
-	if (state === null) {
-		navigate("/");
-		return <div></div>;
-	} else {
-		const comic = state.comic;
-		return (
-			<div>
-				<CustomPageHeader titleString={"TLDR: ".concat(comic.title)} />
-				<div className="site-wrapper">
-					<div className="site-layout-content transition">
-						<Text className="tldrText">{comic.tldr}</Text>
-					</div>
+	return (
+		<div>
+			<CustomPageHeader titleString={"TLDR: ".concat(comic.title)} />
+			<div className="site-wrapper">
+				<div className="site-layout-content transition">
+					<Text className="tldrText">{comic.tldr}</Text>
 				</div>
 			</div>
-		);
-	}
+		</div>
+	);
 };
 
 export default ReadComicPage;

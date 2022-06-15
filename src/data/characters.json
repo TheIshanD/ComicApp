@@ -1,0 +1,51 @@
+[
+    {
+      "name": "Spider-man",
+      "company": "Marvel",
+      "longDesc": "\"Who am I? You sure you want to know? The story of my life is not for the faint of heart. If somebody said it was a happy little tale... if somebody told you I was just your average ordinary guy, not a care in the world… somebody lied!\"",
+      "smallDesc": "\"Remember, with great power comes great responsibility.\"",
+      "starterInt": "1"
+    },
+    {
+      "name": "Batman",
+      "company": "DC",
+      "longDesc": "“Endure, Master Wayne. Take it. They’ll hate you for it, but that’s the point of Batman, he can be the outcast. He can make the choice that no one else can make, the right choice.”",
+      "smallDesc": "“I wear a mask. And that mask, it’s not to hide who I am, but to create what I am.”",
+      "starterInt": "1"
+    },
+    {
+      "name": "The Flash",
+      "company": "DC",
+      "longDesc": "\"Whoa! Whoa! No details about my future, all right? I don't want to know how I die, Wally. All I can hope is that however, it happens... I make a difference.\"",
+      "smallDesc": "\"Life doesn't give us purpose. We give life purpose\"",
+      "starterInt": "1"
+    },
+    {
+      "name": "Green Arrow",
+      "company": "DC",
+      "longDesc": "\"Oliver always told me that in order to save his city, he had to become someone else, he had to become something else. I always thought that meant becoming the Green Arrow, but today I realize that meant becoming a better man.\"",
+      "smallDesc": "\"I have to be someone else, something else\"",
+      "starterInt": "1"
+    },
+    {
+      "name": "Green Lantern",
+      "company": "DC",
+      "longDesc": "“In brightest day, in blackest night, no evil shall escape my sight. Let those who worship evil's might, beware my power, Green Lantern's light.”",
+      "smallDesc": "\"Fear is the enemy of will\"",
+      "starterInt": "1"
+    },
+    {
+      "name": "Iron Man",
+      "company": "Marvel",
+      "longDesc": "\"It's not about how much we lost, it's about how much we have left\"",
+      "smallDesc": "“The truth is...I am Iron Man.”",
+      "starterInt": "1"
+    },
+    {
+      "name": "Superman",
+      "company": "DC",
+      "longDesc": "“No matter where you go in life there’s always going to be the one person that wants to bring you down, so stay strong and face your problems instead of running away.”",
+      "smallDesc": "“Sometimes you have to take a leap of faith first, the trust part comes later.”",
+      "starterInt": "1"
+    }
+  ]

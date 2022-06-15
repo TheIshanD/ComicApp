@@ -43,7 +43,7 @@ const App: React.FC = () => {
 					tldr: doc.data().tldr,
 					tldr2: doc.data().tldr2,
 					keywords: doc.data().keywords,
-					id: doc.id,
+					id: doc.data().id,
 					ranking: 0,
 				};
 			})
@@ -63,6 +63,7 @@ const App: React.FC = () => {
 					longDesc: doc.data().longDesc,
 					smallDesc: doc.data().smallDesc,
 					id: doc.id,
+					starterInt: doc.data().starterInt,
 				};
 			})
 		);
@@ -95,6 +96,10 @@ const App: React.FC = () => {
 		getCategories();
 	}, []);
 
+	// useEffect(() => {
+	// 	console.log(comics);
+	// }, [comics]);
+
 	const menuItems = [
 		{ label: "Explore", key: "explore" },
 		{ label: "Categories", key: "categories" },
@@ -118,13 +123,13 @@ const App: React.FC = () => {
 			navigate("/categories");
 			setCurrMenuKeys(["categories"]);
 		} else if (key === "dc") {
-			navigate("/DC");
+			navigate("/dc");
 			setCurrMenuKeys(["dc"]);
 		} else if (key === "marvel") {
-			navigate("/Marvel");
+			navigate("/marvel");
 			setCurrMenuKeys(["marvel"]);
 		} else if (key === "the mission") {
-			navigate("/THE-MISSION");
+			navigate("/the-mission");
 			setCurrMenuKeys(["the mission"]);
 		}
 	};
@@ -175,24 +180,30 @@ const App: React.FC = () => {
 						path="categories"
 						element={<CategoriesPage comics={comics} categories={categories} />}
 					/>
+					{categories.map((category, index) => {
+						return (
+							<Route
+								key={index}
+								path={"/categories/".concat(
+									category.title.toString().toLowerCase().replaceAll(" ", "-")
+								)}
+								element={<CategoryPage comics={comics} category={category} />}
+							/>
+						);
+					})}
+					{comics.map((comic, index) => {
+						return (
+							<Route
+								key={index}
+								path={"/".concat(
+									comic.title.toString().toLowerCase().replaceAll(" ", "-")
+								)}
+								element={<ReadComicPage comic={comic} />}
+							/>
+						);
+					})}
 					<Route
-						path="categories/action"
-						element={<CategoryPage comics={comics} category={"Action"} />}
-					/>
-					<Route
-						path="categories/romance"
-						element={<CategoryPage comics={comics} category={"Romance"} />}
-					/>
-					<Route
-						path="categories/comedy"
-						element={<CategoryPage comics={comics} category={"Comedy"} />}
-					/>
-					<Route
-						path="read-comic"
-						element={<ReadComicPage comics={comics} />}
-					/>
-					<Route
-						path="Marvel"
+						path="marvel"
 						element={
 							<CompanyComicsPage
 								comics={comics}
@@ -202,7 +213,7 @@ const App: React.FC = () => {
 						}
 					/>
 					<Route
-						path="DC"
+						path="dc"
 						element={
 							<CompanyComicsPage
 								comics={comics}
@@ -211,16 +222,27 @@ const App: React.FC = () => {
 							/>
 						}
 					/>
-					<Route
-						path="Marvel/character-info"
-						element={<CharacterPage comics={comics} company={"Marvel"} />}
-					/>
-					<Route
-						path="DC/character-info"
-						element={<CharacterPage comics={comics} company={"DC"} />}
-					/>
-					<Route path="/THE-MISSION" element={<TheMission />} />
-					<Route path="*" element={<Navigate to="/" replace />} />
+					{characters.map((character, index) => {
+						return (
+							<Route
+								key={index}
+								path={character.company
+									.concat("/")
+									.concat(
+										character.name.toString().toLowerCase().replaceAll(" ", "-")
+									)}
+								element={
+									<CharacterPage
+										character={character}
+										comics={comics}
+										company={character.company}
+									/>
+								}
+							/>
+						);
+					})}
+					<Route path="/the-mission" element={<TheMission />} />
+					{/* <Route path="*" element={<Navigate to="/" replace />} /> */}
 				</Routes>
 			</Content>
 			<Footer className="footer">

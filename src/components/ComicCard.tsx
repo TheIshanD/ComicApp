@@ -27,7 +27,9 @@ const ComicCard: React.FC<myProps> = (props: myProps) => {
 			className="card"
 			hoverable={true}
 			onClick={() => {
-				navigate("/read-comic", { state: { comic: comic } });
+				navigate(
+					"/".concat(comic.title.toString().toLowerCase().replaceAll(" ", "-"))
+				);
 			}}
 		>
 			<Space
@@ -51,6 +53,11 @@ const ComicCard: React.FC<myProps> = (props: myProps) => {
 								)}
 								{tag === "Comedy" && (
 									<div className="tag" style={{ backgroundColor: "#87d068" }}>
+										{tag}
+									</div>
+								)}
+								{tag === "Drama" && (
+									<div className="tag" style={{ backgroundColor: "#9a22dd" }}>
 										{tag}
 									</div>
 								)}
