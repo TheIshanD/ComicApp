@@ -40,7 +40,7 @@ const CompanyCharacterPage: React.FC<myProps> = (props: myProps) => {
 						{ofCompany.map((character: Character, index: number) => {
 							return (
 								<Col key={index} span={12}>
-									<QueueAnim type={"bottom"} duration={1500}>
+									<QueueAnim type={"bottom"} duration={2000} interval={0}>
 										<Card
 											className="card"
 											hoverable={true}

@@ -1,8 +1,6 @@
 interface Category {
-    title: string,
-    description: string,
-    id: string,
+	title: string;
+	description: string;
 }
 
-
-  export default Category
+export default Category;

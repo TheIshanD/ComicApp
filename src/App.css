@@ -37,6 +37,17 @@
   border: black 8px solid;
 }
 
+.whiteContent {
+  background-color: rgb(237, 237, 237);
+}
+
+.mid-site-layout-content {
+  min-height: 80vh;
+  margin: 2vw;
+  background: #b64040;
+  border: black 8px solid;
+}
+
 .pageTopper {
   margin-bottom: 0;
   padding: 2vw;

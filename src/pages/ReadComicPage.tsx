@@ -21,15 +21,18 @@ const ReadComicPage: React.FC<myProps> = (props: myProps) => {
 		<div>
 			<CustomPageHeader titleString={"TLDR: ".concat(comic.title)} />
 			<div className="site-wrapper">
-				<div className="site-layout-content transition">
-					{comic.tldr.map((tldrParagraph, index) => {
-						return (
-							<div key={index}>
-								<Text className="tldrText">{tldrParagraph}</Text>
-								<Divider />
-							</div>
-						);
-					})}
+				<div className="mid-site-layout-content transition">
+					<div className="whiteContent site-layout-content transition">
+						{comic.tldr.map((tldrParagraph, index) => {
+							return (
+								<div key={index}>
+									<Text className="tldrText">{tldrParagraph}</Text>
+									<Divider />
+								</div>
+							);
+						})}
+						`
+					</div>
 				</div>
 			</div>
 		</div>

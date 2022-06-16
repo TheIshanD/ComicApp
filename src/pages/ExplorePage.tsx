@@ -36,7 +36,7 @@ const ExplorePage: React.FC<myProps> = (props: myProps) => {
 					<div className="pageTopper transition">
 						<h2 className="randomComicsString">{"Random Comics:"}</h2>
 						<List grid={{ gutter: 200, column: 4 }}>
-							<QueueAnim duration={1500}>
+							<QueueAnim duration={2000} interval={0}>
 								{indexes.map((index, ind: number) => {
 									return (
 										<List.Item key={ind}>

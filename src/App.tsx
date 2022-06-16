@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import ExplorePage from "./pages/ExplorePage";
 
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs } from "firebase/firestore";
 import { db } from "./firebase-config";
 import Comic from "./types/comicType";
 
@@ -33,6 +33,9 @@ const App: React.FC = () => {
 		setComics(
 			data.docs.map((doc) => {
 				var tags = doc.data().tags;
+				if (tags == undefined) tags = doc.data().tag;
+				if (tags == undefined) tags = doc.data().categories;
+				if (tags == undefined) tags = doc.data().category;
 				if (typeof doc.data().tags === "string") {
 					tags = [doc.data().tags];
 				}
@@ -42,18 +45,26 @@ const App: React.FC = () => {
 				});
 
 				var tldr = doc.data().tldr;
-				if (typeof doc.data().tldr === "string") {
-					tldr = [doc.data().tldr];
+				if (typeof tldr === "string") {
+					tldr = [tldr];
 				}
 
 				var characters = doc.data().characters;
-				if (typeof doc.data().character === "string") {
-					characters = [doc.data().characters];
+				if (characters == undefined) characters = doc.data().character;
+				if (typeof characters === "string") {
+					characters = [characters];
 				}
 
 				var keywords = doc.data().keywords;
-				if (typeof doc.data().keywords === "string") {
-					keywords = [doc.data().keywords];
+				if (keywords == undefined) keywords = doc.data().keyword;
+				if (typeof keywords === "string") {
+					keywords = [keywords];
+				}
+
+				var id = doc.data().id;
+				if (id == undefined) id = doc.data().starterInt;
+				if (typeof id === "string") {
+					id = parseInt(id);
 				}
 
 				return {
@@ -64,7 +75,7 @@ const App: React.FC = () => {
 					tldr: tldr,
 					tldr2: doc.data().tldr2,
 					keywords: keywords,
-					id: doc.data().id,
+					id: id,
 					ranking: 0,
 				};
 			})
@@ -78,13 +89,36 @@ const App: React.FC = () => {
 		const data = await getDocs(characterCollectionRef);
 		setCharacters(
 			data.docs.map((doc) => {
+				var starterInt = doc.data().starterInt;
+				if (starterInt == undefined) starterInt = doc.data().starterID;
+				if (starterInt == undefined) starterInt = doc.data().id;
+				if (typeof starterInt === "string") {
+					starterInt = parseInt(starterInt);
+				}
+
+				var name = doc.data().name;
+				if (name == undefined) name = doc.data().title;
+
+				var smallDesc = doc.data().smallDesc;
+				if (smallDesc == undefined) smallDesc = doc.data().shortDesc;
+
+				var longDesc = doc.data().longDesc;
+				if (longDesc == undefined) longDesc = doc.data().largeDesc;
+
+				var aliases = doc.data().aliases;
+				if (aliases == undefined) aliases = doc.data().alias;
+				if (aliases == undefined) aliases = doc.data().misspellings;
+				if (typeof aliases === "string") {
+					aliases = [aliases];
+				}
+
 				return {
 					company: doc.data().company,
-					name: doc.data().name,
-					longDesc: doc.data().longDesc,
-					smallDesc: doc.data().smallDesc,
-					id: doc.id,
-					starterInt: doc.data().starterInt,
+					name: name,
+					longDesc: longDesc,
+					smallDesc: smallDesc,
+					starterInt: starterInt,
+					misspellings: aliases,
 				};
 			})
 		);
@@ -96,10 +130,12 @@ const App: React.FC = () => {
 	const getCategories = async () => {
 		const data = await getDocs(categoryCollectionRef);
 		const tempCategories = data.docs.map((doc) => {
+			var title = doc.data().title;
+			if (title == undefined) title = doc.data().name;
+
 			return {
 				title: doc.data().title,
 				description: doc.data().description,
-				id: doc.id,
 			};
 		});
 
@@ -195,7 +231,9 @@ const App: React.FC = () => {
 					<Route path="/" element={<ExplorePage comics={comics} />} />
 					<Route
 						path="/explore"
-						element={<ExploreSuggestionsPage comics={comics} />}
+						element={
+							<ExploreSuggestionsPage comics={comics} characters={characters} />
+						}
 					/>
 					<Route
 						path="categories"

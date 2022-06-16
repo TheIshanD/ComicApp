@@ -40,7 +40,7 @@ const CategoryPage: React.FC<myProps> = (props: myProps) => {
 			<div className="site-wrapper">
 				<div className="site-layout-content transition">
 					<List grid={{ gutter: 16, column: 4 }}>
-						<QueueAnim duration={1500}>
+						<QueueAnim duration={2000} interval={0}>
 							{ofCategory.map((comic: Comic, index: number) => {
 								return (
 									<List.Item key={index}>

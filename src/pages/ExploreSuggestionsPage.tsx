@@ -7,13 +7,15 @@ import ComicCard from "../components/ComicCard";
 
 import QueueAnim from "rc-queue-anim";
 import CustomPageHeader from "../components/CustomPageHeader";
+import Character from "../types/characterType";
 
 interface myProps {
 	comics: Comic[];
+	characters: Character[];
 }
 
 const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
-	const { comics } = props;
+	const { comics, characters } = props;
 
 	const { Title } = Typography;
 
@@ -69,6 +71,23 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
 					keep = true;
 					comic.ranking += 3;
 				}
+
+				comic.characters.forEach((tempChar) => {
+					const char = characters.filter((char) => {
+						return char.name.toLowerCase() === tempChar.toLowerCase();
+					})[0];
+
+					const misspellingsArr = char.misspellings;
+
+					console.log(misspellingsArr);
+
+					misspellingsArr.forEach((misspelling) => {
+						if (lowerVal.includes(misspelling)) {
+							keep = true;
+							comic.ranking += 3;
+						}
+					});
+				});
 
 				return keep;
 			});
@@ -132,7 +151,7 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
 									}
 								/>
 							)}
-							<QueueAnim duration={1500}>
+							<QueueAnim duration={1500} interval={0}>
 								{comicSuggestions.length > 0
 									? comicSuggestions.map((comic: Comic, index: number) => {
 											return (

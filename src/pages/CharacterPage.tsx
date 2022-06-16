@@ -35,9 +35,14 @@ const CharacterPage: React.FC<myProps> = (props: myProps) => {
 		return works;
 	});
 
-	useEffect(() => {
-		if (hasCharacter.length == 0) navigate(-1);
-	}, []);
+	// useEffect(() => {
+	// 	if (hasCharacter.length == 0) navigate(-1);
+	// }, []);
+
+	const starterComic = comics.filter((comic) => {
+		if (character.starterInt === comic.id) return true;
+		return false;
+	});
 
 	return (
 		<div>
@@ -47,18 +52,18 @@ const CharacterPage: React.FC<myProps> = (props: myProps) => {
 					<h4 className="characterLongDescString">{character.longDesc}</h4>
 				</div>
 				<div className="site-layout-content transition">
-					<div className="pageTopper exploreSub transition">
-						<h2 className="randomComicsString">{"Start with this!"}</h2>
-						<List grid={{ gutter: 200, column: 4 }}>
-							<QueueAnim duration={1500}>
-								<List.Item key={0}>
-									{comics.length > 0 && (
-										<ComicCard comic={comics[character.starterInt - 1]} />
-									)}
-								</List.Item>
-							</QueueAnim>
-						</List>
-					</div>
+					{starterComic.length > 0 && (
+						<div className="pageTopper exploreSub transition">
+							<h2 className="randomComicsString">{"Start with this!"}</h2>
+							<List grid={{ gutter: 200, column: 4 }}>
+								<QueueAnim duration={2000} interval={0}>
+									<List.Item key={0}>
+										<ComicCard comic={starterComic[0]} />
+									</List.Item>
+								</QueueAnim>
+							</List>
+						</div>
+					)}
 					<List
 						grid={{ gutter: 0, column: 16 }}
 						style={
@@ -68,7 +73,7 @@ const CharacterPage: React.FC<myProps> = (props: myProps) => {
 							}
 						}
 					>
-						<QueueAnim duration={1500}>
+						<QueueAnim duration={2000} interval={0}>
 							{hasCharacter.map((comic: Comic, index: number) => {
 								if (comic.id == character.starterInt) return null;
 								else {

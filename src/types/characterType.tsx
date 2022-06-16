@@ -4,7 +4,7 @@ interface Character {
 	smallDesc: string;
 	longDesc: string;
 	starterInt: number;
-	id: string;
+	misspellings: string[];
 }
 
 export default Character;
