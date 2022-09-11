@@ -1,5 +1,6 @@
 TLDR Comic Books
 ==================
+Founded By Ishan Dasgupta and Aaditya Ganesan
 The Mission
 ----------
 We founded TLDR to share our passion for comic books with other
