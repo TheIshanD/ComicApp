@@ -18,13 +18,13 @@ const TheMission: React.FC<myProps> = (props: myProps) => {
 							We founded TLDR to share our passion for comic books with other
 							people. We recognized the barrier to entry to reading comic books
 							was high, at times very confusing, and esoteric. TLDR is a
-							mechanism for comic book readers to fully understand comics
-							quickly. If you have any recommended comics we should add or want
+							mechanism for comic book readers to fully understand comics quickly. 
+							{/* If you have any recommended comics we should add or want
 							to add a TLDR yourself, join the Discord. If you want to follow
-							along with our journey, follow our instagram! Thank you!
+							along with our journey, follow our instagram! Thank you! */}
 						</Text>
 
-						<div className="socialMediaButtonsWrapper">
+						{/* <div className="socialMediaButtonsWrapper">
 							<SocialMediaButton
 								url={"https://www.instagram.com/"}
 								type={"instagram"}
@@ -35,7 +35,7 @@ const TheMission: React.FC<myProps> = (props: myProps) => {
 								type={"discord"}
 								text={"Join Us!"}
 							/>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>
