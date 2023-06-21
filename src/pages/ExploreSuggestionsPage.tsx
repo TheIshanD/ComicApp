@@ -73,20 +73,22 @@ const ExploreSuggestionsPage: React.FC<myProps> = (props: myProps) => {
 				}
 
 				comic.characters.forEach((tempChar) => {
-					const char = characters.filter((char) => {
-						return char.name.toLowerCase() === tempChar.toLowerCase();
-					})[0];
 
-					const misspellingsArr = char.misspellings;
-
-					console.log(misspellingsArr);
-
-					misspellingsArr.forEach((misspelling) => {
-						if (lowerVal.includes(misspelling)) {
-							keep = true;
-							comic.ranking += 3;
-						}
-					});
+					if(tempChar != "") {
+						const char = characters.filter((char) => {
+							return char.name.toLowerCase() === tempChar.toLowerCase();
+						})[0];		
+	
+						const misspellingsArr = char.misspellings;
+	
+	
+						misspellingsArr.forEach((misspelling) => {
+							if (lowerVal.includes(misspelling)) {
+								keep = true;
+								comic.ranking += 3;
+							}
+						});
+					}
 				});
 
 				return keep;
